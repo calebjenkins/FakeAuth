@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeAuth", "FakeAuth\FakeAuth.csproj", "{5432E491-44EE-44D8-ADAC-C2906EECD957}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeAuth.SampleWeb", "FakeAuth.SampleWeb\FakeAuth.SampleWeb.csproj", "{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{5432E491-44EE-44D8-ADAC-C2906EECD957}.Release|x64.Build.0 = Release|Any CPU
 		{5432E491-44EE-44D8-ADAC-C2906EECD957}.Release|x86.ActiveCfg = Release|Any CPU
 		{5432E491-44EE-44D8-ADAC-C2906EECD957}.Release|x86.Build.0 = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|x64.Build.0 = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Debug|x86.Build.0 = Debug|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|x64.ActiveCfg = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|x64.Build.0 = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|x86.ActiveCfg = Release|Any CPU
+		{0431DDEE-28D9-43C6-9D2F-155BA0BC24B0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
