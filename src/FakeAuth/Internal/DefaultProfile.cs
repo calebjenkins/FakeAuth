@@ -10,7 +10,7 @@ namespace developingux.FakeAuth.Internal
 		{
 			return new Action<FakeAuthOptions>(x =>
 								{
-									x.Claims.Add(new Claim("preferred_username", FakeUser.Name));
+									x.Claims.Add(new Claim(ClaimTypes.Name, FakeUser.Name));
 									x.Claims.Add(new Claim(ClaimTypes.Email, FakeUser.Email));
 								});
 		}

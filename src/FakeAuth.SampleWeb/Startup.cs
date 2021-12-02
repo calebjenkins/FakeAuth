@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using developingux.FakeAuth;
+using System.Security.Claims;
+using System;
+using developingux.FakeAuth.Internal;
 
 namespace FakeAuth.SampleWeb
 {
@@ -21,10 +24,26 @@ namespace FakeAuth.SampleWeb
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.UseFakeAuth();
-
+			// Azure AD Auth:
 			//services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+
+			// Package developingux.FakeAuth
+
+			services.UseFakeAuth();
+			// services.UseFakeAuth(FakeAuthProfile.AZURE_AD);
+			
+			// services.UseFakeAuth<FakeJoe>();
+			// services.UseFakeAuth<FakeSally>();
+
+			//services.UseFakeAuth((options) =>
+			//{
+			//	options.Claims.Add(new Claim(ClaimTypes.Name, "Fake User"));
+			//	options.Claims.Add(new Claim(ClaimTypes.Role, "Expense_Approver"));
+			//	options.Claims.Add(new Claim("Approval_Limit", "25.00"));
+			//	options.Claims.Add(new Claim("Approval_Currency", "USD"));
+			//	options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
+			//});
 
 			services.AddControllersWithViews(options =>
 			{
@@ -63,6 +82,36 @@ namespace FakeAuth.SampleWeb
 						 name: "default",
 						 pattern: "{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapRazorPages();
+			});
+		}
+	}
+
+	public class FakeJoe : IFakeAuthProfile
+	{
+		public Action<FakeAuthOptions> OptionBuilder()
+		{
+			return new Action<FakeAuthOptions>(options =>
+			{
+				options.Claims.Add(new Claim(ClaimTypes.Name, "Fake Joe"));
+				options.Claims.Add(new Claim(ClaimTypes.Role, "Expense_Approver"));
+				options.Claims.Add(new Claim("Approval_Limit", "55.00"));
+				options.Claims.Add(new Claim("Approval_Currency", "USD"));
+				options.Claims.Add(new Claim("Preffered_Location", "Sunny Hammock"));
+			});
+		}
+	}
+
+	public class FakeSally : IFakeAuthProfile
+	{
+		public Action<FakeAuthOptions> OptionBuilder()
+		{
+			return new Action<FakeAuthOptions>(options =>
+			{
+				options.Claims.Add(new Claim(ClaimTypes.Name, "Fake Sally"));
+				options.Claims.Add(new Claim(ClaimTypes.Role, "Expense_Approver"));
+				options.Claims.Add(new Claim("Approval_Limit", "1000.00"));
+				options.Claims.Add(new Claim("Approval_Currency", "USD"));
+				options.Claims.Add(new Claim("Preffered_Location", "Ocean View"));
 			});
 		}
 	}

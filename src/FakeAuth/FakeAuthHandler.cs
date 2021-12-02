@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using developingux.FakeAuth.Internal;
 
 namespace developingux.FakeAuth
 {
@@ -27,7 +26,7 @@ namespace developingux.FakeAuth
 		protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
-			if (!CurrentUri.ToUpper().Contains("://LOCALHOST/"))
+			if (!CurrentUri.ToUpper().Contains("://LOCALHOST:"))
 			{
 				_logger.LogError("Library only intended for localhost developement");
 				return AuthenticateResult.Fail("FakeAuth can only be used for localhost developement. Please impliment another OAuth solution for other scenarios");
