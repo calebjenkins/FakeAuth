@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Claims;
-using static developingux.FakeAuth.Internal.FakeAuthConst;
+using static Developingux.FakeAuth.Internal.FakeAuthConst;
 
-namespace developingux.FakeAuth.Internal
+namespace Developingux.FakeAuth.Internal
 {
 	public class DefaultProfile : IFakeAuthProfile
 	{

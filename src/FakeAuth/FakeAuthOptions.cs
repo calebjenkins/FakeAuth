@@ -1,9 +1,9 @@
-﻿using developingux.FakeAuth.Internal;
+﻿using Developingux.FakeAuth.Internal;
 using Microsoft.AspNetCore.Authentication;
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace developingux.FakeAuth
+namespace Developingux.FakeAuth
 {
 	public class FakeAuthOptions : AuthenticationSchemeOptions
 	{

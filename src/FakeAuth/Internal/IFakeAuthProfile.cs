@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace developingux.FakeAuth.Internal
+namespace Developingux.FakeAuth.Internal
 {
 	public interface IFakeAuthProfile
 	{

@@ -1,4 +1,4 @@
-﻿namespace developingux.FakeAuth
+﻿namespace Developingux.FakeAuth
 {
 	public enum FakeAuthProfile
 	{
