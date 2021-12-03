@@ -1,7 +1,7 @@
 ﻿using Developingux.FakeAuth;
 using System.Security.Claims;
 using System;
-using Developingux.FakeAuth.Internal;
+using Developingux.FakeAuth.Profiles;
 
 namespace FakeAuth.SampleWeb
 {

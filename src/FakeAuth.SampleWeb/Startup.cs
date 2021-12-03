@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Developingux.FakeAuth;
+using Developingux.FakeAuth.Profiles;
 
 namespace FakeAuth.SampleWeb
 {
@@ -26,11 +27,12 @@ namespace FakeAuth.SampleWeb
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
 			// Package: Developingux.FakeAuth with default profile
-			services.UseFakeAuth();
+			//services.UseFakeAuth();
 
 			// FakeAuth with pre-defined profile
-			// services.UseFakeAuth(FakeAuthProfile.AZURE_AD);
-			
+			//services.UseFakeAuth<AzureProfile>();
+			services.UseFakeAuth<DefaultProfile>();
+
 			// FakeAuth with Custom Profile
 			// services.UseFakeAuth<FakeJoe>();
 			// services.UseFakeAuth<FakeSally>();

@@ -4,11 +4,32 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Developingux.FakeAuth</RootNamespace>
     <AssemblyName>Developingux.FakeAuth</AssemblyName>
+    <Version>0.0.0-beta</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Caleb Jenkins</Authors>
+    <Company>DevelopingUX.com</Company>
+    <Description>a library to make local developement of OAuth or OIDC end points simpler.</Description>
+    <Copyright>Caleb Jenkins</Copyright>
+    <PackageProjectUrl>https://github.com/calebjenkins/fakeauth</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/calebjenkins/fakeauth</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>oath, oidc, local development</PackageTags>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageId>FakeAuth</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Developingux.FakeAuth.Internal;
+using Developingux.FakeAuth.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -6,23 +7,6 @@ namespace Developingux.FakeAuth
 {
 	public static class AuthExtension
 	{
-		public static void UseFakeAuth(this IServiceCollection services, FakeAuthProfile profile = FakeAuthProfile.DEFAULT)
-		{
-			switch (profile)
-			{
-				case FakeAuthProfile.DEFAULT:
-					{
-						UseFakeAuth<DefaultProfile>(services);
-						break;
-					}
-				case FakeAuthProfile.AZURE_AD:
-					{
-						UseFakeAuth<AzureProfile>(services);
-						break;
-					}
-			}
-		}
-
 		public static void UseFakeAuth<TProfile>(this IServiceCollection services) where TProfile : IFakeAuthProfile, new()
 		{
 			IFakeAuthProfile profile = new TProfile();
