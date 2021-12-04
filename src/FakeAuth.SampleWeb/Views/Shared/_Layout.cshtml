@@ -28,9 +28,9 @@
 						@if (User.Identity.IsAuthenticated && User.IsInRole("Expense_Approver"))
 						{
 						<li class="nav-item">
-							<button class="btn-dark text-light"
+							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"
 							title="Approve expense below $ @User.Claims.Where(x=>x.Type=="Approval_Limit").First().Value @User.Claims.Where(x=>x.Type=="Approval_Currency").First().Value "
-							>Approve Expenses</button>
+							>Approve Expenses</a>
 						</li>
 						}
 					</ul>

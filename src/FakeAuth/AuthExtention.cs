@@ -7,6 +7,10 @@ namespace Developingux.FakeAuth
 {
 	public static class AuthExtension
 	{
+		public static void UseFakeAuth(this IServiceCollection services)
+		{
+			services.UseFakeAuth<DefaultProfile>();
+		}
 		public static void UseFakeAuth<TProfile>(this IServiceCollection services) where TProfile : IFakeAuthProfile, new()
 		{
 			IFakeAuthProfile profile = new TProfile();

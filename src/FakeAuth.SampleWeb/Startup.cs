@@ -26,18 +26,18 @@ namespace FakeAuth.SampleWeb
 			//services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
-			// Package: Developingux.FakeAuth with default profile
-			//services.UseFakeAuth();
+			// // Package: FakeAuth with default profile
+			services.UseFakeAuth();
 
-			// FakeAuth with pre-defined profile
-			//services.UseFakeAuth<AzureProfile>();
-			services.UseFakeAuth<DefaultProfile>();
+			// // FakeAuth with pre-defined profile
+			// services.UseFakeAuth<AzureProfile>();
+			// services.UseFakeAuth<DefaultProfile>();
 
-			// FakeAuth with Custom Profile
+			// // FakeAuth with Custom Profile
 			// services.UseFakeAuth<FakeJoe>();
 			// services.UseFakeAuth<FakeSally>();
 
-			// FakeAuth with in-line custom options
+			// // FakeAuth with in-line custom options
 			//services.UseFakeAuth((options) =>
 			//{
 			//	options.Claims.Add(new Claim(ClaimTypes.Name, "Fake User"));
