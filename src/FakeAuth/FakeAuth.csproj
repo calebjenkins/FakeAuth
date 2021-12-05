@@ -2,22 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Developingux.FakeAuth</RootNamespace>
-    <AssemblyName>Developingux.FakeAuth</AssemblyName>
+    <RootNamespace>FakeAuth</RootNamespace>
+    <AssemblyName>FakeAuth</AssemblyName>
     <Version>0.0.0-beta</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Caleb Jenkins</Authors>
-    <Company>DevelopingUX.com</Company>
+    <Company>Caleb Jenkins</Company>
     <Description>a library to make local developement of OAuth or OIDC end points simpler.</Description>
-    <Copyright>Caleb Jenkins</Copyright>
+    <Copyright>Copyright Caleb Jenkins</Copyright>
     <PackageProjectUrl>https://github.com/calebjenkins/fakeauth</PackageProjectUrl>
     <RepositoryUrl>https://github.com/calebjenkins/fakeauth</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>oath, oidc, local development</PackageTags>
+    <PackageTags>fakeauth;oath;oidc;openid;local development</PackageTags>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageId>FakeAuth</PackageId>
+    <PackageIcon>FakeAuth_128x128.png</PackageIcon>
+    <PackageIconUrl />
+    <Product>FakeAuth</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\assets\logo\FakeAuth_128x128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

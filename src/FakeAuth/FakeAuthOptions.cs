@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace Developingux.FakeAuth
+namespace FakeAuth
 {
 	public class FakeAuthOptions : AuthenticationSchemeOptions
 	{

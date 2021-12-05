@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Developingux.FakeAuth;
-using Developingux.FakeAuth.Profiles;
+using FakeAuth;
+using FakeAuth.Profiles;
 
 namespace FakeAuth.SampleWeb
 {

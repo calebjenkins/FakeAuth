@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace Developingux.FakeAuth
+namespace FakeAuth
 {
 	public class FakeAuthHandler : AuthenticationHandler<FakeAuthOptions>
 	{

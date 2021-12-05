@@ -1,4 +1,4 @@
-﻿namespace Developingux.FakeAuth.Internal
+﻿namespace FakeAuth.Internal
 {
 	public static class FakeAuthConst
 	{

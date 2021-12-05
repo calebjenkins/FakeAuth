@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Claims;
-using static Developingux.FakeAuth.Internal.FakeAuthConst;
+using static FakeAuth.Internal.FakeAuthConst;
 
-namespace Developingux.FakeAuth.Profiles
+namespace FakeAuth.Profiles
 {
 	public class AzureProfile : IFakeAuthProfile
 	{

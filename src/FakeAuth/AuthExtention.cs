@@ -1,9 +1,9 @@
-﻿using Developingux.FakeAuth.Internal;
-using Developingux.FakeAuth.Profiles;
+﻿using FakeAuth.Internal;
+using FakeAuth.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Developingux.FakeAuth
+namespace FakeAuth
 {
 	public static class AuthExtension
 	{
