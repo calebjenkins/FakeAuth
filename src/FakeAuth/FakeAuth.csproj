@@ -21,6 +21,7 @@
     <PackageIcon>FakeAuth_128x128.png</PackageIcon>
     <PackageIconUrl />
     <Product>FakeAuth</Product>
+    <UserSecretsId>755b8e94-d60c-458c-b121-ca6f2d470c38</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
