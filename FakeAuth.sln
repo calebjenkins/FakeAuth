@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakeAuth", "src\FakeAuth\FakeAuth.csproj", "{44099671-717D-4E1E-A862-C85967B5E4D7}"
 EndProject
@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb3.1", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb5.0", "src\Samples\nuget.SampleWeb5.0\nuget.SampleWeb5.0.csproj", "{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nuget.SampleWeb6.0", "src\Samples\nuget.SampleWeb6.0\nuget.SampleWeb6.0.csproj", "{2D6F9262-594F-459B-984B-5ABD0B173B24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb6.0", "src\Samples\nuget.SampleWeb6.0\nuget.SampleWeb6.0.csproj", "{2D6F9262-594F-459B-984B-5ABD0B173B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
