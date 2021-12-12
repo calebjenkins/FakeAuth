@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakeAuth", "src\FakeAuth\FakeAuth.csproj", "{44099671-717D-4E1E-A862-C85967B5E4D7}"
 EndProject
@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb2.1", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb3.1", "src\Samples\nuget.SampleWeb3.1\nuget.SampleWeb3.1.csproj", "{098AD5EA-B8A5-41D2-9913-E610E9C8A916}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nuget.SampleWeb5.0", "src\Samples\nuget.SampleWeb5.0\nuget.SampleWeb5.0.csproj", "{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuget.SampleWeb5.0", "src\Samples\nuget.SampleWeb5.0\nuget.SampleWeb5.0.csproj", "{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nuget.SampleWeb6.0", "src\Samples\nuget.SampleWeb6.0\nuget.SampleWeb6.0.csproj", "{2D6F9262-594F-459B-984B-5ABD0B173B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E470DE5C-0B00-42F0-A3EB-495832C7A6F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D6F9262-594F-459B-984B-5ABD0B173B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6F9262-594F-459B-984B-5ABD0B173B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6F9262-594F-459B-984B-5ABD0B173B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6F9262-594F-459B-984B-5ABD0B173B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{D813AF57-CCC4-4027-AE71-5FEE0649156F} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 		{098AD5EA-B8A5-41D2-9913-E610E9C8A916} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 		{E470DE5C-0B00-42F0-A3EB-495832C7A6F2} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
+		{2D6F9262-594F-459B-984B-5ABD0B173B24} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65C62345-685E-4FAD-B784-CD8CCE38856E}
