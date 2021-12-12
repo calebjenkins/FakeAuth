@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<h1 class="display-3">Welcome to FakeAuth Sample</h1>
+	<p>get-package <em>FakeAuth</em></p>
+	<h2>Identity Claims:</h2>
+	<ul style="text-align:left">
+		@foreach (var claim in User.Claims)
+		{
+			<li>@claim.Type : @claim.Value</li>
+		}
+	</ul>
+	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
