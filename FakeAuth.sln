@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakeAuth", "src\FakeAuth\FakeAuth.csproj", "{44099671-717D-4E1E-A862-C85967B5E4D7}"
 EndProject
@@ -67,6 +67,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{E03D4241-CA57-4DBB-A087-0F9558B84F69} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 		{D813AF57-CCC4-4027-AE71-5FEE0649156F} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 		{098AD5EA-B8A5-41D2-9913-E610E9C8A916} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
 		{E470DE5C-0B00-42F0-A3EB-495832C7A6F2} = {91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}
