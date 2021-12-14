@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<!-- <TargetFramework>netcoreapp3.1</TargetFramework>-->
-		<TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
 		<RootNamespace>FakeAuth</RootNamespace>
 		<AssemblyName>FakeAuth</AssemblyName>
 		<Version>0.0.0-beta</Version>
@@ -28,15 +28,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[2.0.0, 6.9.0)" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
 	</ItemGroup>
 
+	<!--
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[2.0.0, 2.9.9)" />
 	</ItemGroup>
-
-	<!--
+	
   <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[5.0.0, 5.9.0)" />
