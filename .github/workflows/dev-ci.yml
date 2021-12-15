@@ -30,7 +30,7 @@ jobs:
         PROJ_FILE: src/FakeAuth/FakeAuth.csproj
 
     - name: Echo Project-sdk Version
-      run: echo $RELEASE_VERSION = "${{ steps.get_version.outputs.RELEASE_VERSION }}"
+      run: $RELEASE_VERSION = "${{ steps.get_version.outputs.RELEASE_VERSION }}"
           echo "Release Version is ${RELEASE_VERSION}"
 
     # - name: Set Release Version
