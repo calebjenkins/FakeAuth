@@ -50,10 +50,14 @@ jobs:
       run: echo "Build number is ${BUILD_NUMBER}"
       # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
 
-    # - name: Set Version variable with Preview suffix
-    #   env:
-    #     VERSION: "${{ steps.get_version.outputs.RELEASE_VERSION }}-preview"
+    - name: Set Version variable with Preview suffix
+      env:
+        VERSION: "${{ steps.get_version.outputs.RELEASE_VERSION }}-preview"
         # VERSION: "${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
+
+    - name: Display Version
+      run: echo "The version is ${{VERSION}}"
+
 
     # - name: Setup .NET
     #   uses: actions/setup-dotnet@v1
