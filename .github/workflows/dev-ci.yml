@@ -7,8 +7,8 @@ on:
     - Develop
   workflow_dispatch:
 
-    env:
-      #Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
+    with:
+      Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
       Nuget_URL: "https://api.nuget.org/v3/index.json"
 
 jobs:
