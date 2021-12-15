@@ -18,6 +18,16 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Get version
+      id: get_version
+      uses: greenygh0st/net-proj-release-version@v1
+      with:  
+      # Filepath of the *.csproj file, relative to root of repository
+        PROJ_FILE: src/FakeAuth/FakeAuth.csproj
+
+    - name: Echo Version
+      run: echo "Version - ${{ steps.get_version.outputs.RELEASE_VERSION }}"
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
