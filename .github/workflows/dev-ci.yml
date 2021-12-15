@@ -34,7 +34,7 @@ jobs:
 
     - name: Set Release Version
       run:
-        $RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
+        set RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
 
     - name: Show Release Version
       run: echo "Release Version is ${steps.get_version.outputs.RELEASE_VERSION}"
