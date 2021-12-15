@@ -74,8 +74,8 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build
 
-    # - name: Pack
-    #   run: echo dotnet pack --configuration Release /p:Version=${env.VERSION} --output .
+    - name: Pack
+      run: echo dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-preview  --output .
 
     # - name: Echo GitHub URL
     #   run: echo "URL ${env.Github_URL}"
