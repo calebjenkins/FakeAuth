@@ -37,7 +37,7 @@ jobs:
         set RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
 
     - name: Show Release Version
-      run: echo "Release Version is ${steps.get_version.outputs.RELEASE_VERSION}"
+      run: echo "Release Version is ${{RELEASE_VERSION}}"
     
     - name: Generate build number
       uses: einaregilsson/build-number@v3
