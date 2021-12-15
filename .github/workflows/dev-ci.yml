@@ -7,7 +7,7 @@ on:
     - Develop
   workflow_dispatch:
 
-    with:
+    env:
       Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
       Nuget_URL: "https://api.nuget.org/v3/index.json"
 
@@ -33,11 +33,13 @@ jobs:
       #   RELEASE_VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}
 
     - name: Set Release Version
-      run:
-        set $RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
+      run: echo "getting version"
+        
+      env:
+        RELEASE_VERSION: steps.get_version.outputs.RELEASE_VERSION
 
     - name: Show Release Version
-      run: echo "Release Version is ${{RELEASE_VERSION}}"
+      run: echo "Release Version is ${{ RELEASE_VERSION }}"
     
     - name: Generate build number
       uses: einaregilsson/build-number@v3
