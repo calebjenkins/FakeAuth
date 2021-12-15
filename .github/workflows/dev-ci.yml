@@ -32,9 +32,9 @@ jobs:
     - name: Echo Project-sdk Version
       run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
 
-    # - name: Set Release Version
-    #   env:
-    #     RELEASE_VERSION:  steps.get_version.outputs.RELEASE_VERSION 
+    - name: Set Release Version
+      env:
+        RELEASE_VERSION:  ${ steps.get_version.outputs.RELEASE_VERSION }
     
     - name: Generate build number
       uses: einaregilsson/build-number@v3
