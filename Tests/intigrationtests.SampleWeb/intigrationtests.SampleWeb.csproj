@@ -17,9 +17,9 @@
 	<ItemGroup>
 		<InternalsVisibleTo Include="FakeAuth.IntegrationTests" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\FakeAuth\FakeAuth.csproj" />
-  </ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\FakeAuth\FakeAuth.csproj" />
+	</ItemGroup>
 
 </Project>
