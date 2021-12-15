@@ -50,12 +50,5 @@ namespace FakeAuth.IntegrationTests
 			var content = await response.Content.ReadAsStringAsync();
 			content.Should().BeEmpty();
 		}
-
-		[Fact]
-		public async Task Confirm_Fail()
-		{
-			// Using this to check the /develop work flow
-			false.Should().BeTrue();
-		}
 	}
 }
