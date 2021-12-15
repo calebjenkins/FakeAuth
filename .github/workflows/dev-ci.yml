@@ -16,25 +16,25 @@ jobs:
       Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
       Nuget_URL: "https://api.nuget.org/v3/index.json"
     
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+    # steps:
+    # - name: Checkout
+    #   uses: actions/checkout@v2
+    #   with:
+    #     fetch-depth: 0
 
-    - name: Get version
-      id: get_version
-      uses: greenygh0st/net-proj-release-version@v1
-      with:  
-      # Filepath of the *.csproj file, relative to root of repository
-        PROJ_FILE: src/FakeAuth/FakeAuth.csproj
+    # - name: Get version
+    #   id: get_version
+    #   uses: greenygh0st/net-proj-release-version@v1
+    #   with:  
+    #   # Filepath of the *.csproj file, relative to root of repository
+    #     PROJ_FILE: src/FakeAuth/FakeAuth.csproj
 
-    - name: Echo Project-sdk Version
-      run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
+    # - name: Echo Project-sdk Version
+    #   run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
     
-    - name: Set Version variable with Preview suffix
-      env:
-        VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
+    # - name: Set Version variable with Preview suffix
+    #   env:
+    #     VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
 
     # - name: Generate build number
     #   uses: einaregilsson/build-number@v3
