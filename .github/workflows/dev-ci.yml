@@ -10,7 +10,7 @@ on:
     env:
       #Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
       Nuget_URL: "https://api.nuget.org/v3/index.json"
-      RELEASE_VERSION : ""
+     # RELEASE_VERSION : ""
 
 jobs:
   build:
@@ -31,7 +31,8 @@ jobs:
         PROJ_FILE: src/FakeAuth/FakeAuth.csproj
 
     - name: Get Release Version from Project-sdk Version
-      run: $RELEASE_VERSION = "${{ steps.get_version.outputs.RELEASE_VERSION }}"
+      env:
+        RELEASE_VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}
 
     - name: Show Release Version
       run: echo "Release Version is ${RELEASE_VERSION}"
