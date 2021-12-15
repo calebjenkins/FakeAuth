@@ -33,7 +33,7 @@ jobs:
         RELEASE_VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}
 
     - name: Show Release Version
-      run: echo "Release Version is ${ steps.get_version.outputs.RELEASE_VERSION } "
+      run: echo "Release Version is ${{ steps.get_version.outputs.RELEASE_VERSION }} "
 
     # - name: Set Release Version
     #   run:
