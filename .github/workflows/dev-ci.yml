@@ -10,7 +10,6 @@ on:
     env:
       #Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
       Nuget_URL: "https://api.nuget.org/v3/index.json"
-     # RELEASE_VERSION : ""
 
 jobs:
   build:
@@ -34,7 +33,7 @@ jobs:
         RELEASE_VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}
 
     - name: Show Release Version
-      run: echo "Release Version is ${RELEASE_VERSION}"
+      run: echo "Release Version is ${ steps.get_version.outputs.RELEASE_VERSION } "
 
     # - name: Set Release Version
     #   run:
