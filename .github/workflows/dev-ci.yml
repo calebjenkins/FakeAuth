@@ -78,7 +78,7 @@ jobs:
       run: echo dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER}  --output .
 
     - name: Echo GitHub URL
-      run: echo "URL ${{Nuget_URL}}"
+      run: echo "URL ${{env.Nuget_URL}}"
 
     # # - name: Push to Nuget
     # #   run: dotnet nuget push FakeAuth.${env.VERSION}.nupkg --include-symbols --source ${env.Github_Key} --api-key ${env.Github_URL}
