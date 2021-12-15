@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
+    env:
+      Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
+      Nuget_URL: "https://api.nuget.org/v3/index.json"
     
     steps:
     - name: Checkout
@@ -25,8 +29,11 @@ jobs:
       # Filepath of the *.csproj file, relative to root of repository
         PROJ_FILE: src/FakeAuth/FakeAuth.csproj
 
-    - name: Echo Version
-      run: echo "Version - ${{ steps.get_version.outputs.RELEASE_VERSION }}"
+    - name: Echo Project-sdk Version
+      run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
+    
+    - name: Set Version variable with Preview suffix
+      run: VERSION = ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview"
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -41,3 +48,9 @@ jobs:
 
     - name: Test
       run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      run: echo dotnet pack --configuration Release /p:Version=${VERSION} --output .
+
+    - name: Echo Push to Nuget
+      run: echo dotnet nuget push FakeAuth.${VERSION}.nupkg --source ${env.Github_Key} --api-key ${env.Github_URL}
