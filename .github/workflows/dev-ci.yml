@@ -32,18 +32,19 @@ jobs:
     - name: Echo Project-sdk Version
       run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
     
+
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}        
+    
+    - name: Print new build number
+      run: echo "Build number is ${BUILD_NUMBER}"
+      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
+
     # - name: Set Version variable with Preview suffix
     #   env:
     #     VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
-
-    # - name: Generate build number
-    #   uses: einaregilsson/build-number@v3
-    #   with:
-    #     token: ${{secrets.github_token}}        
-    
-    # - name: Print new build number
-    #   run: echo "Build number is ${BUILD_NUMBER}"
-    #   # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
 
     # - name: Setup .NET
     #   uses: actions/setup-dotnet@v1
