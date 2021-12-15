@@ -34,7 +34,7 @@ jobs:
 
     - name: Set Release Version
       env:
-        RELEASE_VERSION:  ${ steps.get_version.outputs.RELEASE_VERSION }
+        RELEASE_VERSION:  ${{ steps.get_version.outputs.RELEASE_VERSION }}
     
     - name: Generate build number
       uses: einaregilsson/build-number@v3
