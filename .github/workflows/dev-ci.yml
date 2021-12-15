@@ -36,34 +36,34 @@ jobs:
       env:
         VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
 
-    - name: Generate build number
-      uses: einaregilsson/build-number@v3
-      with:
-        token: ${{secrets.github_token}}        
+    # - name: Generate build number
+    #   uses: einaregilsson/build-number@v3
+    #   with:
+    #     token: ${{secrets.github_token}}        
     
-    - name: Print new build number
-      run: echo "Build number is ${BUILD_NUMBER}"
-      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
+    # - name: Print new build number
+    #   run: echo "Build number is ${BUILD_NUMBER}"
+    #   # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
+    # - name: Setup .NET
+    #   uses: actions/setup-dotnet@v1
+    #   with:
+    #     dotnet-version: 6.0.x
 
-    - name: Package Restore
-      run: dotnet restore
+    # - name: Package Restore
+    #   run: dotnet restore
 
-    - name: Build
-      run: dotnet build --configuration Release
+    # - name: Build
+    #   run: dotnet build --configuration Release
 
-    - name: Test
-      run: dotnet test --configuration Release --no-build
+    # - name: Test
+    #   run: dotnet test --configuration Release --no-build
 
-    - name: Pack
-      run: echo dotnet pack --configuration Release /p:Version=${env.VERSION} --output .
+    # - name: Pack
+    #   run: echo dotnet pack --configuration Release /p:Version=${env.VERSION} --output .
 
-    - name: Echo GitHub URL
-      run: echo "URL ${env.Github_URL}"
+    # - name: Echo GitHub URL
+    #   run: echo "URL ${env.Github_URL}"
 
-    # - name: Push to Nuget
-    #   run: dotnet nuget push FakeAuth.${env.VERSION}.nupkg --include-symbols --source ${env.Github_Key} --api-key ${env.Github_URL}
+    # # - name: Push to Nuget
+    # #   run: dotnet nuget push FakeAuth.${env.VERSION}.nupkg --include-symbols --source ${env.Github_Key} --api-key ${env.Github_URL}
