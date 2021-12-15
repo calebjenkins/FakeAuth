@@ -51,6 +51,7 @@ jobs:
       # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
 
     - name: Set Version variable with Preview suffix
+      run: "trying to set a variable again"
       env:
         VERSION: "${{ steps.get_version.outputs.RELEASE_VERSION }}-preview"
         # VERSION: "${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
