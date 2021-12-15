@@ -30,11 +30,11 @@ jobs:
         PROJ_FILE: src/FakeAuth/FakeAuth.csproj
 
     - name: Echo Project-sdk Version
-      run: echo "${{ steps.get_version.outputs.RELEASE_VERSION }}"
+      run: echo $RELEASE_VERSION = "${{ steps.get_version.outputs.RELEASE_VERSION }}"
 
-    - name: Set Release Version
-      run:
-        $RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
+    # - name: Set Release Version
+    #   run:
+    #     $RELEASE_VERSION = steps.get_version.outputs.RELEASE_VERSION
     
     - name: Generate build number
       uses: einaregilsson/build-number@v3
