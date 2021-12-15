@@ -43,7 +43,7 @@ jobs:
     
     - name: Set Version variable with Preview suffix
       env:
-        VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${{BUILD_NUMBER}}"
+        VERSION: ${{ steps.get_version.outputs.RELEASE_VERSION }}-preview-ci.${BUILD_NUMBER}"
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
