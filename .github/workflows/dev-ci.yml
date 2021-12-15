@@ -35,7 +35,7 @@ jobs:
     - name: Set Release Version
       run: echo "getting version"
         
-      with:
+      env:
         RELEASE_VERSION: steps.get_version.outputs.RELEASE_VERSION
 
     - name: Show Release Version
