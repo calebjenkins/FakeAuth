@@ -6,16 +6,17 @@ on:
     branches:
     - Develop
   workflow_dispatch:
-    
+
+    env:
+      Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
+      Nuget_URL: "https://api.nuget.org/v3/index.json"
+      RELEASE_VERSION : ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-    # env:
-    #   Nuget_Key: ${{ secrets.FAKEAUTH_NUGET_KEY }}
-    #   Nuget_URL: "https://api.nuget.org/v3/index.json"
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -33,7 +34,7 @@ jobs:
       run: $RELEASE_VERSION = "${{ steps.get_version.outputs.RELEASE_VERSION }}"
 
     - name: Show Release Version
-      run: cho "Release Version is ${RELEASE_VERSION}"
+      run: echo "Release Version is ${RELEASE_VERSION}"
 
     # - name: Set Release Version
     #   run:
