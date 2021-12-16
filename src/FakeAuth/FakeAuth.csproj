@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>FakeAuth</RootNamespace>
     <AssemblyName>FakeAuth</AssemblyName>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Caleb Jenkins</Authors>
     <Company>Caleb Jenkins</Company>

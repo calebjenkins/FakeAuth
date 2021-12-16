@@ -1,0 +1,68 @@
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+    env:
+      Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
+      Nuget_URL: "https://api.nuget.org/v3/index.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Get version
+      id: get_version
+      uses: greenygh0st/net-proj-release-version@v1
+      with:  
+      # Filepath of the *.csproj file, relative to root of repository
+        PROJ_FILE: src/FakeAuth/FakeAuth.csproj
+        
+    - name: Set Release Version
+      run: echo "getting version"
+        
+      env:
+        RELEASE_VERSION: steps.get_version.outputs.RELEASE_VERSION
+
+    - name: Show Release Version
+      run: echo "Release Version is ${{steps.get_version.outputs.RELEASE_VERSION}}"
+    
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
+      with:
+        token: ${{secrets.github_token}}        
+    
+    - name: Print new build number
+      run: echo "Build number is ${BUILD_NUMBER}"
+      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Package Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Test
+      run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}} --include-symbols  --output .
+
+    - name: Push to Nuget
+      run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
