@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Caleb Jenkins</Authors>
     <Company>Caleb Jenkins</Company>
-    <Description>a library to make local developement of OAuth or OIDC end points simpler.</Description>
+    <Description>a library to make local development of OAuth or OIDC end points simpler.</Description>
     <Copyright>Copyright Caleb Jenkins</Copyright>
     <PackageProjectUrl>https://github.com/calebjenkins/fakeauth</PackageProjectUrl>
     <RepositoryUrl>https://github.com/calebjenkins/fakeauth</RepositoryUrl>
