@@ -75,9 +75,9 @@ jobs:
       run: dotnet test --configuration Release --no-build
 
     - name: Pack
-      run: echo dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER} --include-symbols  --output .
+      run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER} --include-symbols  --output .
 
 
     - name: Push to Nuget
       # run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
-      run: echo dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
+      run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
