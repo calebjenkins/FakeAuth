@@ -61,7 +61,7 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 - To get started building your application as quickly as possible.
 - For POCs that you want to try out without registering your application in an Identity Provider.
 - For running and developing locally without internet access.
-- For Demo based applications that you want people to download and run - without needing to set up a prodution identity service first, and without sharing your application id/client secret information. 
+- For Demo based applications that you want people to download and run - without needing to set up a production identity service first, or without sharing your application id/client secret information. 
 
 ### Not for - FakeAuth can not be used in production
 - Do not use FakeAuth in a production enviroment
