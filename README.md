@@ -66,7 +66,7 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 ### Not for - FakeAuth can not be used in production
 - Do not use FakeAuth in a production enviroment
 - FakeAUth will only work on http://localhost/ - it's intededed to be a developent tool.
-- You will want to transition to an actual OAth / Claims provider before you go to Production
+- You will want to transition to an actual OAth / Claims provider before you go to Production, starting with Fake Auth, can help you establish and document which claims your application will rely on. 
 
 
 
