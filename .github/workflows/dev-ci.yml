@@ -74,6 +74,9 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build
 
+    - name: Verify commit exists in origin/Develop
+      run: git branch --remote --contains | grep origin/Develop
+
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER} --include-symbols  --output .
 

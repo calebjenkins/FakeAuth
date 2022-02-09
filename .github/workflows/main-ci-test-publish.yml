@@ -22,6 +22,9 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Verify commit exists in origin/main
+      run: git branch --remote --contains | grep origin/main
+
     - name: Get version
       id: get_version
       uses: greenygh0st/net-proj-release-version@v1
