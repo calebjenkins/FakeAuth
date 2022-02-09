@@ -19,7 +19,7 @@ namespace FakeAuth
 		: base(options, logger, encoder, clock)
 		{
 			_logger = logger.CreateLogger<FakeAuthHandler>();
-			_logger.LogInformation("Created the authentication handler.");
+			_logger.LogDebug("Created the FakeAuth authentication handler.");
 		}
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
