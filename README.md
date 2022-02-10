@@ -5,6 +5,9 @@
 [![NuGet](https://img.shields.io/nuget/dt/fakeauth.svg)](https://www.nuget.org/packages/fakeauth) 
 [![NuGet](https://img.shields.io/nuget/vpre/fakeauth.svg)](https://www.nuget.org/packages/fakeauth)
 
+
+![FakeAuth Logo](./assets/logo/FakeAuth_med.png "FakeAuth - for simple oAuth .NET 6 development")
+
 a .NET Core library to make developing offline for OAuth and OIDC much easier. 
 
 Developing with OAuth or OIDC - takes about 30 minutes of set up work just to get going; with FakeAuth, it's one line of code.  
