@@ -68,4 +68,4 @@ jobs:
       run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}} --include-symbols  --output .
 
     - name: Push to Nuget
-      run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
+      run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
