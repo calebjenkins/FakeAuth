@@ -53,6 +53,14 @@ Or you can inline your custom claims directly:
 
 See more of these examples in the [SampleWeb application](https://github.com/calebjenkins/FakeAuth/tree/main/Samples/FakeAuth.SampleWeb)
 
+### Testing with FakeAuth
+
+You can easily set/override the default claims that the webserver uses via the `ConfigureFakeAuthClaims(...)` extension method on the `IServiceCollection` interface.
+For an example of this, see the [TestWebApplication class](https://github.com/calebjenkins/FakeAuth/blob/main/Tests/FakeAuth.IntegrationTests/TestWebApplication.cs).
+
+In addition, the `HttpClient` class has an extension method called `SetFakeAuthClaims(...)` that allows you to set what specific claims FakeAuth will set for that specific
+`HttpClient` instance. For an example usage, see [this file](https://github.com/calebjenkins/FakeAuth/blob/main/Tests/FakeAuth.IntegrationTests/Non_Manager_AccessTests.cs).
+
 ### .NET 6
 
 In .NET 6 you are no longer required to use a StartUp class. You can still use FakeAuth directly in the [Program class](https://github.com/calebjenkins/FakeAuth/blob/main/Samples/nuget.SampleWeb6.0/Program.cs):
@@ -70,6 +78,3 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 - Do not use FakeAuth in a production enviroment
 - FakeAUth will only work on http://localhost/ - it's intededed to be a developent tool.
 - You will want to transition to an actual OAth / Claims provider before you go to Production, starting with Fake Auth, can help you establish and document which claims your application will rely on. 
-
-
-
