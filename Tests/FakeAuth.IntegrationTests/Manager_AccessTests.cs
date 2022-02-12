@@ -22,25 +22,21 @@ namespace FakeAuth.IntegrationTests
 			//{
 			//	builder.ConfigureServices(services =>
 			//	{
-			//		services.UseFakeAuth((options) =>
-			//		{
-			//			options.Claims.Add(new Claim(ClaimTypes.Name, "Joe Manager"));
-			//			options.Claims.Add(new Claim(ClaimTypes.Role, "Manager"));
+			//		services.ConfigureFakeAuthClaims(
+			//			new Claim(ClaimTypes.Name, "Joe Manager"),
+			//			new Claim(ClaimTypes.Role, "Manager")
 			//		});
 			//	});
 			//});
-			// Set up - Sets Authorization to use the default FakeAuth Profile
-			Program.BuildAuth = new Action<WebApplicationBuilder>((builder) =>
-			{
-				// Needed for the protected endpoint (Role = Manager)
-				builder.Services.UseFakeAuth((options) =>
-				{
-					options.Claims.Add(new Claim(ClaimTypes.Name, "Joe Manager"));
-					options.Claims.Add(new Claim(ClaimTypes.Role, "Manager"));
-				});
-			});
 
-			_appUnderTest = new TestWebApplication();
+			_appUnderTest = new TestWebApplication
+			{
+				DefaultClaims =
+				{
+					new Claim(ClaimTypes.Name, "Joe Manager"),
+					new Claim(ClaimTypes.Role, "Manager"),
+				}
+			};
 		}
 
 

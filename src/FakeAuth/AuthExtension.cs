@@ -2,6 +2,8 @@
 using FakeAuth.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace FakeAuth
 {
@@ -24,6 +26,14 @@ namespace FakeAuth
 			.AddScheme<FakeAuthOptions, FakeAuthHandler>(FakeAuthConst.SchemaName, null);
 
 			services.Configure<FakeAuthOptions>(FakeAuthConst.SchemaName, options);
+		}
+
+		public static void ConfigureFakeAuthClaims(this IServiceCollection services, params Claim[] claims)
+		{
+			services.Configure<FakeAuthOptions>(FakeAuthConst.SchemaName, opts =>
+			{
+				opts.Claims = claims.ToList();
+			});
 		}
 	}
 }

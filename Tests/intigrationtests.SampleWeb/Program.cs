@@ -8,8 +8,7 @@ using FakeAuth;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-BuildAuth(builder);
+ builder.Services.UseFakeAuth();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -46,21 +45,7 @@ app.MapControllers();
 
 app.Run();
 
+// here to ensure visibility of Program class to tests
 public partial class Program
 {
-
-	// Added so we can override this in integration tests
-	// Also added to csproj file: <InternalsVisibleTo Include="FakeAuth.IntegrationTests" />
-	private static Action<WebApplicationBuilder> _buildAuth = (builder) =>
-			 {
-				 builder.Services.UseFakeAuth();
-			 //builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-			 // .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
-
-		 };
-	public static Action<WebApplicationBuilder> BuildAuth
-	{
-		get => _buildAuth;
-		set => _buildAuth = value;
-	}
 }
