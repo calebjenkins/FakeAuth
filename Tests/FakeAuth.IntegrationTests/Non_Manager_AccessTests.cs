@@ -22,7 +22,7 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Be_Able_To_Access_NonManager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
+			using var client = _appUnderTest.CreateClient();
 
 			// Act
 			var response = await client.GetAsync("/api/open");
@@ -36,7 +36,7 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Not_Be_Able_To_Access_Manager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
+			using var client = _appUnderTest.CreateClient();
 
 			// Act
 			var response = await client.GetAsync("/api/protected");
@@ -50,7 +50,7 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Be_Able_To_Access_Manager_Endpoint_With_Http_Claims()
 		{
-			var client = _appUnderTest.CreateClient();
+			using var client = _appUnderTest.CreateClient();
 			client.SetFakeAuthClaims(new Claim(ClaimTypes.Role, "Manager"));
 
 			// Act
