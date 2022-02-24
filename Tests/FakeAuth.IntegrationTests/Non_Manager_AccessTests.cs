@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using System;
 using System.Threading.Tasks;
 using System.Net;
+using System.Security.Claims;
+using FakeAuth.Tests;
 
 namespace FakeAuth.IntegrationTests
 {
@@ -13,12 +15,6 @@ namespace FakeAuth.IntegrationTests
 		private readonly TestWebApplication _appUnderTest;
 		public Non_Manager_AccessTests()
 		{
-			// Set up - Sets Authorization to use the default FakeAuth Profile
-			Program.BuildAuth = new Action<WebApplicationBuilder>((builder) =>
-			{
-				builder.Services.UseFakeAuth();
-			});
-
 			_appUnderTest = new TestWebApplication();
 		}
 		public void Dispose() => _appUnderTest.Dispose();
@@ -26,7 +22,7 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Be_Able_To_Access_NonManager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
+			using var client = _appUnderTest.CreateClient();
 
 			// Act
 			var response = await client.GetAsync("/api/open");
@@ -40,7 +36,7 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Not_Be_Able_To_Access_Manager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
+			using var client = _appUnderTest.CreateClient();
 
 			// Act
 			var response = await client.GetAsync("/api/protected");
@@ -49,6 +45,21 @@ namespace FakeAuth.IntegrationTests
 			response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
 			var content = await response.Content.ReadAsStringAsync();
 			content.Should().BeEmpty();
+		}
+
+		[Fact]
+		public async Task Should_Be_Able_To_Access_Manager_Endpoint_With_Http_Claims()
+		{
+			using var client = _appUnderTest.CreateClient();
+			client.SetFakeAuthClaims(new Claim(ClaimTypes.Role, "Manager"));
+
+			// Act
+			var response = await client.GetAsync("/api/protected");
+
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+			var content = await response.Content.ReadAsStringAsync();
+			content.Should().NotBeNullOrEmpty();
 		}
 	}
 }

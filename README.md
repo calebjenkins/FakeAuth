@@ -26,7 +26,7 @@ Or via the .NET Core command line interface:
 
     dotnet add package FakeAuth
 
-Either commands, from Package Manager Console or .NET Core CLI, will download and install FakeAuth and all required dependencies.
+Either command, from Package Manager Console or .NET Core CLI, will download and install FakeAuth and all required dependencies.
 
 ### Using FakeAuth
 
@@ -38,9 +38,8 @@ That will give you a default profile. In fact, the above is exactly the same as 
 
     services.UseFakeAuth<DefaultProfile>();
 
-You can created custom profiles by implementing the interface [IFakeAuthProfile](https://github.com/calebjenkins/FakeAuth/blob/main/src/FakeAuth/Profiles/IFakeAuthProfile.cs)
-
-Or you can inline your custom claims directly:
+You can create custom profiles by implementing the interface [IFakeAuthProfile](https://github.com/calebjenkins/FakeAuth/blob/main/src/FakeAuth/Profiles/IFakeAuthProfile.cs),
+or you can inline your custom claims directly:
 
     services.UseFakeAuth((options) =>
     {
@@ -51,7 +50,22 @@ Or you can inline your custom claims directly:
 		options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
 	});
 
-See more of these examples in the [SampleWeb application](https://github.com/calebjenkins/FakeAuth/tree/main/Samples/FakeAuth.SampleWeb)
+See more of these examples in the [SampleWeb application](https://github.com/calebjenkins/FakeAuth/tree/main/Samples/FakeAuth.SampleWeb).
+
+### Testing with FakeAuth
+
+FakeAuth works great with ASP.Net's testing framework. For some examples, take a look at the
+[FakeAuth.IntegrationTests project](https://github.com/calebjenkins/FakeAuth/blob/main/Tests/FakeAuth.IntegrationTests).
+
+In particular, you can set the FakeAuth claims for a specific `HttpClient` using `SetFakeAuthClaims(...)`:
+
+```csharp
+client.SetFakeAuthClaims(
+    new Claim(ClaimTypes.Name, "Joe Manager"),
+    new Claim(ClaimTypes.Role, "Manager")
+);
+```
+This lets you write tests that validate your authorization works as intended with and without the required claims.
 
 ### .NET 6
 
@@ -71,5 +85,6 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 - FakeAUth will only work on http://localhost/ - it's intededed to be a developent tool.
 - You will want to transition to an actual OAth / Claims provider before you go to Production, starting with Fake Auth, can help you establish and document which claims your application will rely on. 
 
+## Contributing to FakeAuth
 
-
+Please target any PRs to the `Develop` branch.

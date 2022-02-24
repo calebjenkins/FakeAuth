@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using System;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
+using FakeAuth.Tests;
 
 namespace FakeAuth.IntegrationTests
 {
@@ -12,45 +14,26 @@ namespace FakeAuth.IntegrationTests
 	[Collection("Integration Tests")]
 	public class Manager_AccessTests :IDisposable
 	{
+		private readonly HttpClient _client;
 		private readonly TestWebApplication _appUnderTest;
 
 		public Manager_AccessTests()
 		{
-			// Alternative approach, doesn't require a wrapper class:
-			//_appUnderTest = new WebApplicationFactory<Program>()
-			//.WithWebHostBuilder(builder =>
-			//{
-			//	builder.ConfigureServices(services =>
-			//	{
-			//		services.UseFakeAuth((options) =>
-			//		{
-			//			options.Claims.Add(new Claim(ClaimTypes.Name, "Joe Manager"));
-			//			options.Claims.Add(new Claim(ClaimTypes.Role, "Manager"));
-			//		});
-			//	});
-			//});
-			// Set up - Sets Authorization to use the default FakeAuth Profile
-			Program.BuildAuth = new Action<WebApplicationBuilder>((builder) =>
-			{
-				// Needed for the protected endpoint (Role = Manager)
-				builder.Services.UseFakeAuth((options) =>
-				{
-					options.Claims.Add(new Claim(ClaimTypes.Name, "Joe Manager"));
-					options.Claims.Add(new Claim(ClaimTypes.Role, "Manager"));
-				});
-			});
-
 			_appUnderTest = new TestWebApplication();
+			_client = _appUnderTest.CreateClient();
+
+			_client.SetFakeAuthClaims(
+				new Claim(ClaimTypes.Name, "Joe Manager"),
+				new Claim(ClaimTypes.Role, "Manager")
+			);
 		}
 
 
 		[Fact]
 		public async Task Should_Be_Able_To_Access_NonManager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
-
 			// Act
-			var response = await client.GetAsync("/api/open");
+			var response = await _client.GetAsync("/api/open");
 
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -61,10 +44,8 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Also_Be_Able_To_Access_Manager_Endpoint()
 		{
-			var client = _appUnderTest.CreateClient();
-
 			// Act
-			var response = await client.GetAsync("/api/protected");
+			var response = await _client.GetAsync("/api/protected");
 
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -72,6 +53,10 @@ namespace FakeAuth.IntegrationTests
 			content.Should().NotBeNullOrEmpty();
 		}
 
-		public void Dispose() => _appUnderTest.Dispose();
+		public void Dispose()
+		{
+			_client?.Dispose();
+			_appUnderTest?.Dispose();
+		}
 	}
 }

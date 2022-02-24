@@ -9,5 +9,7 @@
 			public const string Name = "Fake User";
 			public const string Email = "fake@fakeuser.com";
 		}
+
+		public const string ClaimsHeaderName = "X-FakeAuth-Claims";
 	}
 }
