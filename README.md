@@ -12,7 +12,7 @@ a .NET Core library to make developing offline for OAuth and OIDC much easier.
 
 Developing with OAuth or OIDC - takes about 30 minutes of set up work just to get going; with FakeAuth, it's one line of code.  
 
-Supports custom Claims and Profiles that can be swapped in during developement of your application. 
+Supports custom Claims and Profiles that can be swapped in during development of your application. 
 
 Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).    More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/).
 
@@ -59,7 +59,7 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 
     builder.Services.UseFakeAuth();
 
-### Use Cases - for OAth/Claims based .NET Core applications
+### Use Cases - for OAuth/Claims based .NET Core applications
 
 - To get started building your application as quickly as possible.
 - For POCs that you want to try out without registering your application in an Identity Provider.
@@ -68,8 +68,8 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 
 ### Not for - FakeAuth can not be used in production
 - Do not use FakeAuth in a production enviroment
-- FakeAUth will only work on http://localhost/ - it's intededed to be a developent tool.
-- You will want to transition to an actual OAth / Claims provider before you go to Production, starting with Fake Auth, can help you establish and document which claims your application will rely on. 
+- FakeAuth will only work on http://localhost/ - it's intended to be a development tool.
+- You will want to transition to an actual OAuth / Claims provider before you go to Production. Starting with Fake Auth can help you establish and document which claims your application will rely on. 
 
 
 
