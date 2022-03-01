@@ -7,7 +7,6 @@ using Microsoft.Extensions.Options;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using FakeAuth.Internal;
 
 namespace FakeAuth
 {
@@ -37,9 +36,9 @@ namespace FakeAuth
 			}
 
 			var claims = Options.Claims;
-			if (Request.Headers.ContainsKey(FakeAuthConst.ClaimsHeaderName))
+			if (Request.Headers.ContainsKey(FakeAuthDefaults.ClaimsHeaderName))
 			{
-				var headerVal = Request.Headers[FakeAuthConst.ClaimsHeaderName][0];
+				var headerVal = Request.Headers[FakeAuthDefaults.ClaimsHeaderName][0];
 				using var stream = new MemoryStream(Convert.FromBase64String(headerVal));
 				using var reader = new BinaryReader(stream);
 

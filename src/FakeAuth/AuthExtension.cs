@@ -1,5 +1,5 @@
-﻿using FakeAuth.Internal;
-using FakeAuth.Profiles;
+﻿using FakeAuth.Profiles;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -7,6 +7,11 @@ namespace FakeAuth
 {
 	public static class AuthExtension
 	{
+		public static AuthenticationBuilder AddFakeAuth(this AuthenticationBuilder authbuilder)
+		{
+			authbuilder.Services.UseFakeAuth();
+			return authbuilder;
+		}
 		public static void UseFakeAuth(this IServiceCollection services)
 		{
 			services.UseFakeAuth<DefaultProfile>();
@@ -20,10 +25,10 @@ namespace FakeAuth
 
 		public static void UseFakeAuth(this IServiceCollection services, Action<FakeAuthOptions> options)
 		{
-			services.AddAuthentication(FakeAuthConst.SchemaName)
-			.AddScheme<FakeAuthOptions, FakeAuthHandler>(FakeAuthConst.SchemaName, null);
+			services.AddAuthentication(FakeAuthDefaults.SchemaName)
+			.AddScheme<FakeAuthOptions, FakeAuthHandler>(FakeAuthDefaults.SchemaName, null);
 
-			services.Configure<FakeAuthOptions>(FakeAuthConst.SchemaName, options);
+			services.Configure<FakeAuthOptions>(FakeAuthDefaults.SchemaName, options);
 		}
 	}
 }

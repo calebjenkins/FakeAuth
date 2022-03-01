@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FakeAuth;
 using FakeAuth.Profiles;
 
 namespace FakeAuth.SampleWeb
@@ -27,7 +26,7 @@ namespace FakeAuth.SampleWeb
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
 			// // Package: FakeAuth with default profile
-			services.UseFakeAuth();
+			//services.UseFakeAuth();
 
 			// // FakeAuth with pre-defined profile
 			// services.UseFakeAuth<AzureProfile>();
@@ -46,6 +45,8 @@ namespace FakeAuth.SampleWeb
 			//	options.Claims.Add(new Claim("Approval_Currency", "USD"));
 			//	options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
 			//});
+			services.AddAuthentication(FakeAuthDefaults.SchemaName)
+				.AddFakeAuth();
 
 			services.AddControllersWithViews(options =>
 			{

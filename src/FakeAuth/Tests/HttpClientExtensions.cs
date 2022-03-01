@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net.Http;
 using System.Security.Claims;
-using FakeAuth.Internal;
 
 namespace FakeAuth.Tests
 {
@@ -10,7 +9,7 @@ namespace FakeAuth.Tests
 	{
 		public static void SetFakeAuthClaims(this HttpClient client, params Claim[] claims)
 		{
-			client.DefaultRequestHeaders.Remove(FakeAuthConst.ClaimsHeaderName);
+			client.DefaultRequestHeaders.Remove(FakeAuthDefaults.ClaimsHeaderName);
 
 			using var stream = new MemoryStream();
 			using var writer = new BinaryWriter(stream);
@@ -22,7 +21,7 @@ namespace FakeAuth.Tests
 
 			var headerValue = Convert.ToBase64String(stream.ToArray());
 
-			client.DefaultRequestHeaders.Add(FakeAuthConst.ClaimsHeaderName, headerValue);
+			client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, headerValue);
 		}
 	}
 }
