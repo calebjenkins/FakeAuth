@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Security.Claims;
 
-namespace FakeAuth.Tests
+namespace FakeAuth
 {
 	public static class HttpClientExtensions
 	{
