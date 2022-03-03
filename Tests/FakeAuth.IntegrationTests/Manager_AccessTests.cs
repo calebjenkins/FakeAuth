@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
-using FakeAuth.Tests;
 
 namespace FakeAuth.IntegrationTests
 {

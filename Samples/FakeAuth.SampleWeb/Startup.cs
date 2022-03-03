@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using FakeAuth.Profiles;
 
 namespace FakeAuth.SampleWeb
 {
@@ -25,19 +24,24 @@ namespace FakeAuth.SampleWeb
 			//services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
+			// services.UseFakeAuth() is depricated in favor of:
+			services.AddAuthentication()
+				.AddFakeAuth();
+
 			// // Package: FakeAuth with default profile
-			//services.UseFakeAuth();
+			//services.AddAuthentication().AddFakeAuth();
 
 			// // FakeAuth with pre-defined profile
-			// services.UseFakeAuth<AzureProfile>();
-			// services.UseFakeAuth<DefaultProfile>();
+			// services.AddAuthentication().AddFakeAuth<AzureProfile>();
+			// services.AddAuthentication().AddFakeAuth<DefaultProfile>();
 
 			// // FakeAuth with Custom Profile
-			// services.UseFakeAuth<FakeJoe>();
-			// services.UseFakeAuth<FakeSally>();
+			// services.AddAuthentication().AddFakeAuth<FakeJoe>();
+			// services.AddAuthentication().AddFakeAuth<FakeSally>();
 
 			// // FakeAuth with in-line custom options
-			//services.UseFakeAuth((options) =>
+			//services.AddAuthentication()
+			//  .AddFakeAuth((options) =>
 			//{
 			//	options.Claims.Add(new Claim(ClaimTypes.Name, "Fake User"));
 			//	options.Claims.Add(new Claim(ClaimTypes.Role, "Expense_Approver"));
@@ -45,8 +49,6 @@ namespace FakeAuth.SampleWeb
 			//	options.Claims.Add(new Claim("Approval_Currency", "USD"));
 			//	options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
 			//});
-			services.AddAuthentication(FakeAuthDefaults.SchemaName)
-				.AddFakeAuth();
 
 			services.AddControllersWithViews(options =>
 			{

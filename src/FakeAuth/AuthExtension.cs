@@ -7,7 +7,6 @@ namespace FakeAuth
 {
 	public static class AuthExtension
 	{
-
 		public static AuthenticationBuilder AddFakeAuth(this AuthenticationBuilder authbuilder)
 		{
 			return AddFakeAuth<DefaultProfile>(authbuilder);
@@ -26,6 +25,7 @@ namespace FakeAuth
 				.AddScheme<FakeAuthOptions, FakeAuthHandler>(FakeAuthDefaults.SchemaName, null);
 
 			authbuilder.Services.Configure<FakeAuthOptions>(FakeAuthDefaults.SchemaName, options);
+
 			return authbuilder;
 		}
 
