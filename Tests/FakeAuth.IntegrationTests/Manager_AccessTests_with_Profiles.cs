@@ -1,4 +1,4 @@
-﻿using FakeAuth;
+﻿using FakeAuth.Testing;
 using FluentAssertions;
 using System;
 using System.Net;

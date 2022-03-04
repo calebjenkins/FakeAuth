@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 
-namespace FakeAuth
+namespace FakeAuth.Testing
 {
 	public static class HttpClientExtensions
 	{
@@ -13,7 +13,7 @@ namespace FakeAuth
 		{
 			TProfile profile = new TProfile();
 			var claims = profile.GetClaims().ToArray();
-			SetFakeAuthClaims(client, claims);
+			client.SetFakeAuthClaims(claims);
 		}
 
 		public static void SetFakeAuthClaims(this HttpClient client, params Claim[] claims)
