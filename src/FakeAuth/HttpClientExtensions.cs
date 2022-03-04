@@ -9,6 +9,13 @@ namespace FakeAuth
 {
 	public static class HttpClientExtensions
 	{
+		public static void SetFakeAuthClaimns<TProfile>(this HttpClient client) where TProfile : IFakeAuthProfile, new()
+		{
+			TProfile profile = new TProfile();
+			var claims = profile.GetClaims().ToArray();
+			SetFakeAuthClaims(client, claims);
+		}
+
 		public static void SetFakeAuthClaims(this HttpClient client, params Claim[] claims)
 		{
 			client.DefaultRequestHeaders.Remove(FakeAuthDefaults.ClaimsHeaderName);
@@ -24,13 +31,6 @@ namespace FakeAuth
 			var headerValue = Convert.ToBase64String(stream.ToArray());
 
 			client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, headerValue);
-		}
-
-		public static void SetFakeAuthClaimns<TProfile>(this HttpClient client) where TProfile : IFakeAuthProfile, new()
-		{
-			TProfile profile = new TProfile();
-			var claims = profile.GetClaims().ToArray();
-			SetFakeAuthClaims(client, claims);
 		}
 	}
 }
