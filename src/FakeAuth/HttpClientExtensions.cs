@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FakeAuth.Profiles;
+using System;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 
@@ -22,6 +24,13 @@ namespace FakeAuth
 			var headerValue = Convert.ToBase64String(stream.ToArray());
 
 			client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, headerValue);
+		}
+
+		public static void SetFakeAuthClaimns<TProfile>(this HttpClient client) where TProfile : IFakeAuthProfile, new()
+		{
+			TProfile profile = new TProfile();
+			var claims = profile.GetClaims().ToArray();
+			SetFakeAuthClaims(client, claims);
 		}
 	}
 }
