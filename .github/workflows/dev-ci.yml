@@ -2,9 +2,13 @@ on:
   push:
     branches:
     - Develop
+    paths-ignore:
+      - '**.md'
   pull_request:
     branches:
     - Develop
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
 
     env:

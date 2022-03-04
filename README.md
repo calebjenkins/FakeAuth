@@ -32,16 +32,17 @@ Either command, from Package Manager Console or .NET Core CLI, will download and
 
 In an ASP.NET Core Application, you can configure FakeAuth in the Startup Class:
 
-    services.UseFakeAuth();
+   services.AddAuthentication().AddFakeAuth();
 
 That will give you a default profile. In fact, the above is exactly the same as doing this:
 
-    services.UseFakeAuth<DefaultProfile>();
+   services.AddAuthentication().AddFakeAuth<DefaultProfile>();
 
 You can create custom profiles by implementing the interface [IFakeAuthProfile](https://github.com/calebjenkins/FakeAuth/blob/main/src/FakeAuth/Profiles/IFakeAuthProfile.cs),
 or you can inline your custom claims directly:
 
-    services.UseFakeAuth((options) =>
+```csharp
+  services.AddAuthentication().AddFakeAuth((options) =>
     {
 		options.Claims.Add(new Claim(ClaimTypes.Name, "Fake User"));
 		options.Claims.Add(new Claim(ClaimTypes.Role, "Expense_Approver"));
@@ -49,7 +50,7 @@ or you can inline your custom claims directly:
 		options.Claims.Add(new Claim("Approval_Currency", "USD"));
 		options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
 	});
-
+```
 See more of these examples in the [SampleWeb application](https://github.com/calebjenkins/FakeAuth/tree/main/Samples/FakeAuth.SampleWeb).
 
 ### Testing with FakeAuth
@@ -65,13 +66,21 @@ client.SetFakeAuthClaims(
     new Claim(ClaimTypes.Role, "Manager")
 );
 ```
+
+You can also re-use any profiles that impliment `IFakeAuthProfile` directly on your `HttpClient`:
+```csharp
+ client.SetFakeAuthClaims<DefaultProfile>();
+```
+
 This lets you write tests that validate your authorization works as intended with and without the required claims.
 
 ### .NET 6
 
 In .NET 6 you are no longer required to use a StartUp class. You can still use FakeAuth directly in the [Program class](https://github.com/calebjenkins/FakeAuth/blob/main/Samples/nuget.SampleWeb6.0/Program.cs):
 
-    builder.Services.UseFakeAuth();
+```csharp
+    builder.Services.AddAuthentication().AddFakeAuth();
+```
 
 ### Use Cases - for OAuth/Claims based .NET Core applications
 
@@ -88,3 +97,11 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 ## Contributing to FakeAuth
 
 Please target any PRs to the `Develop` branch.
+
+## History
+Prior to `version 1.2.0` only `services.UseFakeAuth()` was supported. This is considered obsolete, and will be dropped in version 2.0.0 moving forward.
+
+Starting with `version 1.2.0 +` please use the `services.AddAuthentication().AddFakeAuth()` extension methods.
+This was done to more syntactically align FakeAuth with other authentication mechanisms and idioms.
+
+This history section will be removed (more likely updated) when we get to `2.0.0 +`

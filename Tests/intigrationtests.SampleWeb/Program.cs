@@ -8,7 +8,8 @@ using FakeAuth;
 
 var builder = WebApplication.CreateBuilder(args);
 
- builder.Services.UseFakeAuth();
+builder.Services.AddAuthentication()
+	.AddFakeAuth();
 
 builder.Services.AddAuthorization(options =>
 {

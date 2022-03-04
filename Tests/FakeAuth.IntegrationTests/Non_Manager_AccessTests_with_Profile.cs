@@ -5,27 +5,36 @@ using System;
 using System.Threading.Tasks;
 using System.Net;
 using System.Security.Claims;
+using System.Net.Http;
 using FakeAuth.Testing;
 
 namespace FakeAuth.IntegrationTests
 {
 	[Collection("Integration Tests")]
-	public class Non_Manager_AccessTests : IDisposable
+	public class Non_Manager_AccessTests_with_Profile : IDisposable
 	{
 		private readonly TestWebApplication _appUnderTest;
-		public Non_Manager_AccessTests()
+		private readonly HttpClient _client; 
+
+		public Non_Manager_AccessTests_with_Profile()
 		{
 			_appUnderTest = new TestWebApplication();
+			_client = _appUnderTest.CreateClient();
+
+			_client.SetFakeAuthClaimns<NonManagerJoeProfile>();
 		}
-		public void Dispose() => _appUnderTest.Dispose();
+		
+		public void Dispose()
+		{
+			_client?.Dispose();
+			_appUnderTest?.Dispose();
+		}
 
 		[Fact]
 		public async Task Should_Be_Able_To_Access_NonManager_Endpoint()
 		{
-			using var client = _appUnderTest.CreateClient();
-
 			// Act
-			var response = await client.GetAsync("/api/open");
+			var response = await _client.GetAsync("/api/open");
 
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -36,10 +45,8 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Not_Be_Able_To_Access_Manager_Endpoint()
 		{
-			using var client = _appUnderTest.CreateClient();
-
 			// Act
-			var response = await client.GetAsync("/api/protected");
+			var response = await _client.GetAsync("/api/protected");
 
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
@@ -50,11 +57,10 @@ namespace FakeAuth.IntegrationTests
 		[Fact]
 		public async Task Should_Be_Able_To_Access_Manager_Endpoint_With_Http_Claims()
 		{
-			using var client = _appUnderTest.CreateClient();
-			client.SetFakeAuthClaims(new Claim(ClaimTypes.Role, "Manager"));
+			_client.SetFakeAuthClaims(new Claim(ClaimTypes.Role, "Manager"));
 
 			// Act
-			var response = await client.GetAsync("/api/protected");
+			var response = await _client.GetAsync("/api/protected");
 
 			// Assert
 			response.StatusCode.Should().Be(HttpStatusCode.OK);

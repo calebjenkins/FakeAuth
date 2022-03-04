@@ -4,7 +4,7 @@ using static FakeAuth.Internal.FakeAuthConst;
 
 namespace FakeAuth.Profiles
 {
-    public class DefaultProfile : IFakeAuthProfile
+	public class DefaultProfile : IFakeAuthProfile
     {
         public Action<FakeAuthOptions> OptionBuilder()
         {
