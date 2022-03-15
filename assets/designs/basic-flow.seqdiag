@@ -1,0 +1,19 @@
+Title: Basic OAuth Flow
+Participant Website
+Participant User
+Participant IDP
+
+
+Note right of Website: OAuth Flow - first time
+    User -> Website: Can I have the webpage?
+    Website ->> User: You need a signed token first; Go get one from this place:
+    Website ->> IDP: Website forwards User to IDP
+    IDP ->> User: You need to log in here
+    User ->> IDP: Log In (Authenticate)
+    IDP ->> User: Here is an Auth Token for the Website
+    User ->> Website: Can I have the webpage? (with Token)
+    Website ->> User: That checks out! Here you go.
+
+    
+
+
