@@ -52,6 +52,21 @@ namespace FakeAuth.IntegrationTests
 			content.Should().NotBeNullOrEmpty();
 		}
 
+		[Fact]
+		public async Task Should_Be_Able_To_Access_Manager_Endpoint_Byhand_claims()
+		{
+			_client.DefaultRequestHeaders.Remove(FakeAuthDefaults.ClaimsHeaderName);
+			_client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, $"{ClaimTypes.Name},Joe Manager");
+			_client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, $"{ClaimTypes.Role},Manager");
+			// Act
+			var response = await _client.GetAsync("/api/protected");
+
+			// Assert
+			response.StatusCode.Should().Be(HttpStatusCode.OK);
+			var content = await response.Content.ReadAsStringAsync();
+			content.Should().NotBeNullOrEmpty();
+		}
+
 		public void Dispose()
 		{
 			_client?.Dispose();

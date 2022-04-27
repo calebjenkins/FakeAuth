@@ -1,5 +1,6 @@
 ﻿using FakeAuth.Profiles;
 using System;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -9,7 +10,7 @@ namespace FakeAuth.Testing
 {
 	public static class HttpClientExtensions
 	{
-		public static void SetFakeAuthClaimns<TProfile>(this HttpClient client) where TProfile : IFakeAuthProfile, new()
+		public static void SetFakeAuthClaims<TProfile>(this HttpClient client) where TProfile : IFakeAuthProfile, new()
 		{
 			TProfile profile = new TProfile();
 			var claims = profile.GetClaims().ToArray();
@@ -20,17 +21,10 @@ namespace FakeAuth.Testing
 		{
 			client.DefaultRequestHeaders.Remove(FakeAuthDefaults.ClaimsHeaderName);
 
-			using var stream = new MemoryStream();
-			using var writer = new BinaryWriter(stream);
-
 			foreach (var c in claims)
 			{
-				c.WriteTo(writer);
+				client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, $"{c.Type},{c.Value}");
 			}
-
-			var headerValue = Convert.ToBase64String(stream.ToArray());
-
-			client.DefaultRequestHeaders.Add(FakeAuthDefaults.ClaimsHeaderName, headerValue);
 		}
 	}
 }

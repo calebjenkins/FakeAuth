@@ -67,7 +67,7 @@ client.SetFakeAuthClaims(
 );
 ```
 
-You can also re-use any profiles that impliment `IFakeAuthProfile` directly on your `HttpClient`:
+You can also re-use any profiles that implement `IFakeAuthProfile` directly on your `HttpClient`:
 ```csharp
  client.SetFakeAuthClaims<DefaultProfile>();
 ```
@@ -90,8 +90,8 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 - For Demo based applications that you want people to download and run - without needing to set up a production identity service first, or without sharing your application id/client secret information. 
 
 ### Not for - FakeAuth can not be used in production
-- Do not use FakeAuth in a production enviroment
-- FakeAuth will only work on http://localhost/ - it's intended to be a development tool.
+- Do not use FakeAuth in a production environment
+- FakeAuth will only work on http://localhost/ by default - it's intended to be a development tool.
 - You will want to transition to an actual OAuth / Claims provider before you go to Production. Starting with Fake Auth can help you establish and document which claims your application will rely on. 
 
 ## Contributing to FakeAuth

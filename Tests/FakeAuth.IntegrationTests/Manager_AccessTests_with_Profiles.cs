@@ -20,7 +20,7 @@ public class Manager_AccessTests_with_Profiles : IDisposable
 		_appUnderTest = new TestWebApplication();
 		_client = _appUnderTest.CreateClient();
 
-		_client.SetFakeAuthClaimns<ManagerJoeProfile>();
+		_client.SetFakeAuthClaims<ManagerJoeProfile>();
 	}
 
 
