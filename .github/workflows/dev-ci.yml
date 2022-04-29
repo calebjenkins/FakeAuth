@@ -10,9 +10,10 @@ on:
     paths-ignore:
       - '**.md'
   workflow_dispatch:
-    env:
-      Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
-      Nuget_URL: "https://api.nuget.org/v3/index.json"
+
+env:
+  Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
+  Nuget_URL: "https://api.nuget.org/v3/index.json"
 
 jobs:
   build:
