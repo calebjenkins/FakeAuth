@@ -14,6 +14,6 @@ namespace FakeAuth
 
 		public List<Claim> Claims { get; set; }
 
-		public string AllowedHost { get; set; } = DefaultAllowedHost;
+		public IEnumerable<string> AllowedHosts { get; set; } = new[] { DefaultAllowedHost };
 	}
 }

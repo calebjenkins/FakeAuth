@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -30,10 +31,11 @@ namespace FakeAuth
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 			var host = Context.Request.Host.Host;
-			if (host.ToUpper() != Options.AllowedHost.ToUpper())
+			if (!Options.AllowedHosts.Any(x => host.Equals(x, StringComparison.OrdinalIgnoreCase)))
 			{
-				_logger.LogError("Failing authentication due to unexpected host {Host} when allowed host is {AllowedHost}", host, Options.AllowedHost);
-				return AuthenticateResult.Fail($"FakeAuth fails all requests that do not match {Options.AllowedHost}; got host {host}.");
+				var hostsString = string.Join(", ", Options.AllowedHosts);
+				_logger.LogError("Failing authentication due to unexpected host {Host} when allowed hosts is {AllowedHost}", host, hostsString);
+				return AuthenticateResult.Fail($"FakeAuth fails all requests that do not match {hostsString}; got host {host}.");
 			}
 
 			var claims = Options.Claims;

@@ -1,4 +1,7 @@
-﻿using intigrationtests.SampleWeb;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using intigrationtests.SampleWeb;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +11,7 @@ namespace FakeAuth.IntegrationTests
 	public class TestWebApplication : WebApplicationFactory<Program>
 	{
 		public string? Host { get; set; }
-		public string? AllowedHost { get; set; }
+		public IEnumerable<string> AllowedHosts { get; set; } = ImmutableArray<string>.Empty;
 
 		protected override void ConfigureWebHost(IWebHostBuilder builder)
 		{
@@ -22,7 +25,7 @@ namespace FakeAuth.IntegrationTests
 				});
 				services.Configure<FakeAuthOptions>(FakeAuthDefaults.SchemaName, opts =>
 				{
-					opts.AllowedHost = AllowedHost ?? FakeAuthOptions.DefaultAllowedHost;
+					opts.AllowedHosts = AllowedHosts.Any() ? AllowedHosts : new[] { FakeAuthOptions.DefaultAllowedHost };
 				});
 			});
 		}
