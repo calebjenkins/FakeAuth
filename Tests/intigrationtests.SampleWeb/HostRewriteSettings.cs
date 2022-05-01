@@ -2,5 +2,5 @@
 
 public sealed class HostRewriteSettings
 {
-	public string Host { get; set; }
+	public string? Host { get; set; }
 }

@@ -1,7 +1,6 @@
 using Microsoft.Identity.Web.UI;
 using FakeAuth;
 using intigrationtests.SampleWeb;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
