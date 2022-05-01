@@ -6,11 +6,14 @@ namespace FakeAuth
 {
 	public class FakeAuthOptions : AuthenticationSchemeOptions
 	{
+		public const string DefaultAllowedHost = "localhost";
 		public FakeAuthOptions()
 		{
 			Claims = new List<Claim>();
 		}
 
 		public List<Claim> Claims { get; set; }
+
+		public IEnumerable<string> AllowedHosts { get; set; } = new[] { DefaultAllowedHost };
 	}
 }
