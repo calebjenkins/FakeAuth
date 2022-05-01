@@ -10,14 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		Build.ps1 = Build.ps1
-		.github\workflows\ci.yml = .github\workflows\ci.yml
-		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
-		NuGet.Config = NuGet.Config
-		Push.ps1 = Push.ps1
 		README.md = README.md
-		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\dev-ci.yml = .github\workflows\dev-ci.yml
+		.github\workflows\main-ci-test-publish.yml = .github\workflows\main-ci-test-publish.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{91A40EAF-50BB-4778-AC9D-5D62B7BFD93E}"

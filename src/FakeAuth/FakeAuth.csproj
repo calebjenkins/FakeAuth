@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
     <RootNamespace>FakeAuth</RootNamespace>
     <AssemblyName>FakeAuth</AssemblyName>
     <Version>2.0.0</Version>
@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://developingux.com/introducing-fakeauth</PackageProjectUrl>
     <RepositoryUrl>https://github.com/calebjenkins/fakeauth</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>fakeauth;oath;oidc;openid;local development</PackageTags>
+    <PackageTags>fakeauth;oauth;oidc;openid;local development</PackageTags>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -26,7 +26,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.24" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
