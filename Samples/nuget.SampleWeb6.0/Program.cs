@@ -1,15 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using FakeAuth;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.UseFakeAuth();
+builder.Services.AddAuthentication().AddFakeAuth();
 //builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
 //    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
