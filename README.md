@@ -100,9 +100,9 @@ Please target any PRs to the `Develop` branch.
 
 ## History
 ### Changes in `version 2.0.0`
-    - Removed the obsolete extension methods from `version 1.2.0`
-    - Fixed a typo in the `HttpClientExtensions` extension class from `SetFakeAuthClaimns` to `SetFakeAuthClaims`
-    - New Feature: Added a new `AllowedHosts` property to the `FakeAuthOptions` class. Previously, only localhost testing was supported, with `2.0.0` and forward, specific hosts can be configured to support more testing scenarios.
+- Removed the obsolete extension methods from `version 1.2.0`
+- Fixed typo in the `HttpClientExtensions` extension class from `SetFakeAuthClaimns` to `SetFakeAuthClaims`
+- **New Feature:**  We added a new `AllowedHosts` property to the `FakeAuthOptions` class. Previously, only localhost testing was supported, with `2.0.0` and forward, specific hosts can be configured to support more testing scenarios.
  
 
 ### Version 1.2.0
