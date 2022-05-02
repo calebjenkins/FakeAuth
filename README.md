@@ -14,7 +14,7 @@ Developing with OAuth or OIDC - takes about 30 minutes of set up work just to ge
 
 Supports custom Claims and Profiles that can be swapped in during development of your application. 
 
-Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).    More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/).
+Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).  More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/) and [additional articles](https://developingux.com/fakeauth). 
 
 ### Installing FakeAuth
 
