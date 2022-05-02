@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.1.21" />
-		<PackageReference Include="FakeAuth" Version="2.0.0-ci*" />
+		<PackageReference Include="FakeAuth" Version="*-ci*" />
 	</ItemGroup>
 
 </Project>
