@@ -28,28 +28,5 @@ namespace FakeAuth
 
 			return authbuilder;
 		}
-
-		[Obsolete("Please use AddAuthentication().AddFakeAuth() instead") ]
-		public static void UseFakeAuth(this IServiceCollection services)
-		{
-			services.UseFakeAuth<DefaultProfile>();
-		}
-
-		[Obsolete("Please use AddAuthentication().AddFakeAuth() instead")]
-		public static void UseFakeAuth<TProfile>(this IServiceCollection services) where TProfile : IFakeAuthProfile, new()
-		{
-			IFakeAuthProfile profile = new TProfile();
-			Action<FakeAuthOptions> options = profile.OptionBuilder();
-			UseFakeAuth(services, options);
-		}
-
-		[Obsolete("Please use AddAuthentication().AddFakeAuth() instead")]
-		public static void UseFakeAuth(this IServiceCollection services, Action<FakeAuthOptions> options)
-		{
-			services.AddAuthentication(FakeAuthDefaults.SchemaName)
-			.AddScheme<FakeAuthOptions, FakeAuthHandler>(FakeAuthDefaults.SchemaName, null);
-
-			services.Configure<FakeAuthOptions>(FakeAuthDefaults.SchemaName, options);
-		}
 	}
 }

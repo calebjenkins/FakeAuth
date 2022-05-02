@@ -14,7 +14,7 @@ Developing with OAuth or OIDC - takes about 30 minutes of set up work just to ge
 
 Supports custom Claims and Profiles that can be swapped in during development of your application. 
 
-Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).    More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/).
+Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).  More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/) and [additional articles](https://developingux.com/fakeauth). 
 
 ### Installing FakeAuth
 
@@ -99,6 +99,13 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 Please target any PRs to the `Develop` branch.
 
 ## History
+### Changes in `version 2.0.0`
+    - Removed the obsolete extension methods from `version 1.2.0`
+    - Fixed a typo in the `HttpClientExtensions` extension class from `SetFakeAuthClaimns` to `SetFakeAuthClaims`
+    - New Feature: Added a new `AllowedHosts` property to the `FakeAuthOptions` class. Previously, only localhost testing was supported, with `2.0.0` and forward, specific hosts can be configured to support more testing scenarios.
+ 
+
+### Version 1.2.0
 Prior to `version 1.2.0` only `services.UseFakeAuth()` was supported. This is considered obsolete, and will be dropped in version 2.0.0 moving forward.
 
 Starting with `version 1.2.0 +` please use the `services.AddAuthentication().AddFakeAuth()` extension methods.
