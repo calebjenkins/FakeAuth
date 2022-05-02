@@ -100,7 +100,7 @@ Please target any PRs to the `Develop` branch.
 
 ## History
 ### Changes in `version 2.0.0`
-- Removed the obsolete extension methods from `version 1.2.0`
+- Removed the obsolete extension methods from `version 1.2.0`. Must use `AddAuthentication().AddFakeAuth()` methods now.
 - Fixed typo in the `HttpClientExtensions` extension class from `SetFakeAuthClaimns` to `SetFakeAuthClaims`
 - **New Feature:**  We added a new `AllowedHosts` property to the `FakeAuthOptions` class. Previously, only localhost testing was supported, with `2.0.0` and forward, specific hosts can be configured to support more testing scenarios.
  
