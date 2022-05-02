@@ -11,7 +11,7 @@ namespace FakeAuth.IntegrationTests
 	public class TestWebApplication : WebApplicationFactory<Program>
 	{
 		public string? Host { get; set; }
-		public IEnumerable<string> AllowedHosts { get; set; } = ImmutableArray<string>.Empty;
+		public IList<string> AllowedHosts { get; set; } = ImmutableArray<string>.Empty;
 
 		protected override void ConfigureWebHost(IWebHostBuilder builder)
 		{
