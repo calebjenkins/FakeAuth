@@ -26,8 +26,14 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Detect if workflow is running on origin/Develop
+      id: detect_main
+      run: git rev-parse HEAD | grep $(git rev-parse origin/main)
+      continue-on-error: true
+    
     - name: Verify commit exists in origin/main
       run: git log origin/main..HEAD | grep $(git rev-parse --short HEAD)
+      if: ${{ steps.main_main.outcome == 'failure' }}
 
     - name: Get version
       id: get_version
@@ -70,6 +76,8 @@ jobs:
 
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}} --include-symbols  --output .
-
+      if: ${{ steps.main_main.outcome == 'success' }}
+      
     - name: Push to Nuget
       run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
+      if: ${{ steps.main_main.outcome == 'success' }}
