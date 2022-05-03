@@ -1,15 +1,13 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using FakeAuth;
+using intigrationtests.SampleWeb;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication()
 	.AddFakeAuth();
+builder.Services.Configure<HostRewriteSettings>(_ => { });
 
 builder.Services.AddAuthorization(options =>
 {
@@ -19,9 +17,6 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages()
 	 .AddMicrosoftIdentityUI();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-//For(typeof(ILogger<>)).Use(typeof(Logger<>));
-
 
 var app = builder.Build();
 
@@ -37,6 +32,17 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.Use((ctx, next) =>
+{
+	var settings = app.Services.GetRequiredService<IOptions<HostRewriteSettings>>();
+
+	if (!string.IsNullOrEmpty(settings.Value.Host))
+	{
+		ctx.Request.Host = new HostString(settings.Value.Host);
+	}
+	return next();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -29,23 +30,24 @@ namespace FakeAuth
 		protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
-			if (!CurrentUri.ToUpper().Contains("://LOCALHOST"))
+			var host = Context.Request.Host.Host;
+			if (!Options.AllowedHosts.Any(x => host.Equals(x, StringComparison.OrdinalIgnoreCase)))
 			{
-				_logger.LogError("Library only intended for localhost developement");
-				return AuthenticateResult.Fail("FakeAuth can only be used for localhost developement. Please impliment another OAuth solution for other scenarios");
+				var hostsString = string.Join(", ", Options.AllowedHosts);
+				_logger.LogError("Failing authentication due to unexpected host {Host} when allowed hosts is {AllowedHost}", host, hostsString);
+				return AuthenticateResult.Fail($"FakeAuth fails all requests that do not match {hostsString}; got host {host}.");
 			}
 
 			var claims = Options.Claims;
 			if (Request.Headers.ContainsKey(FakeAuthDefaults.ClaimsHeaderName))
 			{
-				var headerVal = Request.Headers[FakeAuthDefaults.ClaimsHeaderName][0];
-				using var stream = new MemoryStream(Convert.FromBase64String(headerVal));
-				using var reader = new BinaryReader(stream);
+				var claimValues = Request.Headers[FakeAuthDefaults.ClaimsHeaderName];
 
 				claims = new List<Claim>();
-				while (stream.Position < stream.Length)
+				foreach(var c in claimValues)
 				{
-					claims.Add(new Claim(reader));
+					var parts = c.Split(",");
+					claims.Add(new Claim(parts[0], parts[1]));
 				}
 			}
 

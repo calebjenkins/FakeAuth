@@ -11,9 +11,9 @@ on:
       - '**.md'
   workflow_dispatch:
 
-    env:
-      Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
-      Nuget_URL: "https://api.nuget.org/v3/index.json"
+env:
+  Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
+  Nuget_URL: "https://api.nuget.org/v3/index.json"
 
 jobs:
   build:
@@ -78,13 +78,23 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build
 
-    - name: Verify commit exists in origin/Develop
-      run: git branch --remote --contains | grep origin/Develop
+    - name: Detect if workflow is running on origin/Develop
+      id: detect_develop
+      run: git rev-parse HEAD | grep $(git rev-parse origin/Develop)
+      continue-on-error: true
+
+    - name: Verify is based on origin/Develop to ensure PRs are correctly targeted
+      # List commits that are ahead of origin/Develop through HEAD and look for the tip of the current branch. 
+      # If HEAD isn't ahead of origin/Develop, the git log bit will be empty and grep will fail
+      run: git log origin/Develop..HEAD | grep $(git rev-parse --short HEAD)
+      if: ${{ steps.detect_develop.outcome == 'failure' }}
 
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER} --include-symbols  --output .
+      if: ${{ steps.detect_develop.outcome == 'success' }}
 
 
     - name: Push to Nuget
+      if: ${{ steps.detect_develop.outcome == 'success' }}
       # run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
       run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}

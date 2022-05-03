@@ -14,7 +14,7 @@ Developing with OAuth or OIDC - takes about 30 minutes of set up work just to ge
 
 Supports custom Claims and Profiles that can be swapped in during development of your application. 
 
-Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).    More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/).
+Examples in the [Samples Folder](https://github.com/calebjenkins/FakeAuth/tree/main/Samples).  More details on [why this was built on this blog post](https://developingux.com/introducing-fakeauth/) and [additional articles](https://developingux.com/fakeauth). 
 
 ### Installing FakeAuth
 
@@ -67,7 +67,7 @@ client.SetFakeAuthClaims(
 );
 ```
 
-You can also re-use any profiles that impliment `IFakeAuthProfile` directly on your `HttpClient`:
+You can also re-use any profiles that implement `IFakeAuthProfile` directly on your `HttpClient`:
 ```csharp
  client.SetFakeAuthClaims<DefaultProfile>();
 ```
@@ -90,8 +90,8 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 - For Demo based applications that you want people to download and run - without needing to set up a production identity service first, or without sharing your application id/client secret information. 
 
 ### Not for - FakeAuth can not be used in production
-- Do not use FakeAuth in a production enviroment
-- FakeAuth will only work on http://localhost/ - it's intended to be a development tool.
+- Do not use FakeAuth in a production environment
+- FakeAuth will only work on http://localhost/ by default - it's intended to be a development tool.
 - You will want to transition to an actual OAuth / Claims provider before you go to Production. Starting with Fake Auth can help you establish and document which claims your application will rely on. 
 
 ## Contributing to FakeAuth
@@ -99,6 +99,13 @@ In .NET 6 you are no longer required to use a StartUp class. You can still use F
 Please target any PRs to the `Develop` branch.
 
 ## History
+### Changes in `version 2.0.0`
+- Removed the obsolete extension methods from `version 1.2.0`. Must use `AddAuthentication().AddFakeAuth()` methods now.
+- Fixed typo in the `HttpClientExtensions` extension class from `SetFakeAuthClaimns` to `SetFakeAuthClaims`
+- **New Feature:**  We added a new `AllowedHosts` property to the `FakeAuthOptions` class. Previously, only localhost testing was supported, with `2.0.0` and forward, specific hosts can be configured to support more testing scenarios.
+ 
+
+### Version 1.2.0
 Prior to `version 1.2.0` only `services.UseFakeAuth()` was supported. This is considered obsolete, and will be dropped in version 2.0.0 moving forward.
 
 Starting with `version 1.2.0 +` please use the `services.AddAuthentication().AddFakeAuth()` extension methods.

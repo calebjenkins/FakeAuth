@@ -21,7 +21,7 @@ namespace FakeAuth.IntegrationTests
 			_appUnderTest = new TestWebApplication();
 			_client = _appUnderTest.CreateClient();
 
-			_client.SetFakeAuthClaimns<NonManagerJoeProfile>();
+			_client.SetFakeAuthClaims<NonManagerJoeProfile>();
 		}
 		
 		public void Dispose()

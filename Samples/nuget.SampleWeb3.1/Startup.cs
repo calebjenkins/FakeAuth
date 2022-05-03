@@ -28,7 +28,7 @@ namespace nuget.SampleWeb3._1
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.UseFakeAuth();
+			services.AddAuthentication().AddFakeAuth();
 			//services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
 			//	 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
