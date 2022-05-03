@@ -48,6 +48,9 @@ namespace FakeAuth.SampleWeb
 			//	options.Claims.Add(new Claim("Approval_Limit", "25.00"));
 			//	options.Claims.Add(new Claim("Approval_Currency", "USD"));
 			//	options.Claims.Add(new Claim("Preffered_Location", "Disney Island"));
+
+			//	options.AllowedHosts.Add("localhost");
+			//	options.AllowedHosts.Add("container-host");
 			//});
 
 			services.AddControllersWithViews(options =>
