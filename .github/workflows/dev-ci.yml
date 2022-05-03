@@ -14,7 +14,7 @@ on:
 env:
   Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
   Nuget_URL: "https://api.nuget.org/v3/index.json"
-  Branch_Name: github.ref.name
+  Branch_Name: github.ref_name
 
 jobs:
   build:
