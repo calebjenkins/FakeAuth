@@ -28,7 +28,7 @@ jobs:
         fetch-depth: 0
 
     - name: Echo Branch name
-      run: echo ${{ github.ref.name }}
+      run: echo ${{ github.GITHUB_REF_NAME }}
 
     - name: Get version
       id: get_version
