@@ -14,7 +14,6 @@ on:
 env:
   Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
   Nuget_URL: "https://api.nuget.org/v3/index.json"
-  Branch_Name: github.ref_name
 
 jobs:
   build:
@@ -27,8 +26,9 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Echo Branch name
-      run: echo "Branch name is $env:Branch_Name "
+    - name: Echo Branch Name
+      run: echo "Branch name is $GITHUB_REF "
+      #if: ${{ github.ref == 'refs/heads/main' }}
 
     - name: Get version
       id: get_version
