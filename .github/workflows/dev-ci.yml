@@ -27,7 +27,7 @@ jobs:
         fetch-depth: 0
 
     - name: Echo Branch Name
-      run: echo "Branch name is $GITHUB_REF "
+      run: echo "Branch name is $GITHUB_REF_NAME "
       #if: ${{ github.ref == 'refs/heads/main' }}
 
     - name: Get version
