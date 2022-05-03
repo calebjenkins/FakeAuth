@@ -99,6 +99,7 @@ jobs:
 
 
     - name: Push to Nuget
-      if: ${{ steps.detect_develop.outcome == 'success' }}
+      # if: ${{ steps.detect_develop.outcome == 'success' }}
+      if: ${{ github.ref == 'refs/heads/Develop' }}
       # run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
       run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}-ci-${BUILD_NUMBER}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
