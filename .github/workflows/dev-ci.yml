@@ -28,7 +28,7 @@ jobs:
         fetch-depth: 0
 
     - name: Echo Branch name
-      run: echo {{Branch_Name}}
+      run: echo ${{ env.Branch_Name }}
 
     - name: Get version
       id: get_version
