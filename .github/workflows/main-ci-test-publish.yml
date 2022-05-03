@@ -26,7 +26,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Detect if workflow is running on origin/Develop
+    - name: Detect if workflow is running on origin/main
       id: detect_main
       run: git rev-parse HEAD | grep $(git rev-parse origin/main)
       continue-on-error: true
@@ -56,10 +56,6 @@ jobs:
       with:
         token: ${{secrets.github_token}}        
     
-    - name: Print new build number
-      run: echo "Build number is ${BUILD_NUMBER}"
-      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
