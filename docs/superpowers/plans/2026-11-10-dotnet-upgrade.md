@@ -32,11 +32,11 @@
 
 **Interfaces:** Produces FakeAuth for net10.0/net11.0 with the existing registration API and the current three-argument handler constructor; existing test-host endpoints remain /api/open and /api/protected.
 
-- [ ] Install checksum-verified SDK 11 and ASP.NET runtime 10, inspecting official release metadata.
-- [ ] Change framework/dependency configuration, then build to expose authentication API incompatibilities before changing handler code.
-- [ ] Use the modern handler constructor and remove unused identity-provider dependencies/template links.
-- [ ] Run existing test suites on each runtime: expect 3 extension and 17 integration tests per runtime, zero failures or skips.
-- [ ] Commit the library/test migration after the checks pass.
+- [x] Install checksum-verified SDK 11 and ASP.NET runtime 10, inspecting official release metadata.
+- [x] Change framework/dependency configuration, then build to expose authentication API incompatibilities before changing handler code.
+- [x] Use the modern handler constructor and remove unused identity-provider dependencies/template links.
+- [x] Run existing test suites on each runtime: expect 3 extension and 17 integration tests per runtime, zero failures or skips.
+- [x] Commit the library/test migration after the checks pass.
 
 ### Task 2: Supported samples and solution membership
 
@@ -44,10 +44,10 @@
 
 **Interfaces:** Each sample accepts --profile default|manager|inline (default default); GET /api/claims returns claim type/value pairs, GET /api/manager requires Manager. Ports are provided by --urls; profile mode uses IFakeAuthProfile, inline mode uses AddFakeAuth options.
 
-- [ ] Write a standard-library HTTP smoke runner that starts both samples in each mode and asserts default name/email, custom profile name, inline name, Manager success, default Manager denial and unexpected-host rejection. Run before sample implementation: expect failure because sample projects do not exist.
-- [ ] Add the minimal sample projects and implementations, replacing legacy solution membership.
-- [ ] Build the complete solution and run python3 Samples/smoke-test.py: expect all six sample configurations pass and child processes stop.
-- [ ] Commit the samples and smoke check.
+- [x] Write a standard-library HTTP smoke runner that starts both samples in each mode and asserts default name/email, custom profile name, inline name, Manager success, default Manager denial and unexpected-host rejection. Run before sample implementation: expect failure because sample projects do not exist.
+- [x] Add the minimal sample projects and implementations, replacing legacy solution membership.
+- [x] Build the complete solution and run python3 Samples/smoke-test.py: expect all six sample configurations pass and child processes stop.
+- [x] Commit the samples and smoke check.
 
 ### Task 3: CI, documentation and reusable environment
 
@@ -55,8 +55,8 @@
 
 **Interfaces:** Consumes solution/tests/sample smoke runner from tasks 1 and 2. Produces repeatable restore/build/test/sample checks using SDK 11 plus runtime 10.
 
-- [ ] Configure CI installation of SDK 11 and runtime 10; retain existing branch and package-publishing conditions; run sample smoke checks.
-- [ ] Rewrite stale sample and framework documentation, explain the breaking 3.0.0 change and local run/test commands.
-- [ ] Run restore, Release build, both runtime test suites, sample smoke checks and pack. Inspect nupkg lib/net10.0 and lib/net11.0 plus framework references; expect no old targets or sample links outside history/design documentation.
-- [ ] Exercise the saved installation commands and persist complete install_script/start_skill updates.
+- [x] Configure CI installation of SDK 11 and runtime 10; retain existing branch and package-publishing conditions; run sample smoke checks.
+- [x] Rewrite stale sample and framework documentation, explain the breaking 3.0.0 change and local run/test commands.
+- [x] Run restore, Release build, both runtime test suites, sample smoke checks and pack. Inspect nupkg lib/net10.0 and lib/net11.0 plus framework references; expect no old targets or sample links outside history/design documentation.
+- [x] Exercise the saved installation commands and persist complete install_script/start_skill updates.
 - [ ] Commit the remaining changes and request one independent whole-branch review. Resolve important findings and run affected checks before reporting completion.

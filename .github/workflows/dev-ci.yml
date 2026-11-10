@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -69,18 +69,23 @@ jobs:
 
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 6.0.x
+        # SDK 10 supplies its ASP.NET runtime; global.json selects SDK 11.
+        dotnet-version: 10.0.x
+        global-json-file: global.json
 
     - name: Package Restore
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration Release --no-restore --maxcpucount:2
 
     - name: Test
-      run: dotnet test --configuration Release --no-build
+      run: dotnet test --configuration Release --no-build --no-restore
+
+    - name: Smoke test .NET 10 and 11 samples
+      run: python3 Samples/smoke-test.py
 
     - name: Detect if workflow is running on origin/Develop
       id: detect_develop
