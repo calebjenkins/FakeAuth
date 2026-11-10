@@ -58,16 +58,24 @@ For reusable profiles, implement [IFakeAuthProfile](src/FakeAuth/Profiles/IFakeA
 
 Install the **.NET 11 SDK** selected by [global.json](global.json), plus the **.NET 10 ASP.NET Core runtime**. Installing the .NET 10 SDK alongside SDK 11 also supplies that runtime. The solution's library, test suites, and integration-test host target both frameworks.
 
+Alternatively, with PowerShell 7.4 or later installed, run the user-local installer in a PowerShell terminal:
+
+```powershell
+./scripts/install.ps1
+```
+
+The [installer](scripts/install.ps1) downloads the pinned SDK and runtime for your operating system and architecture, verifies their official SHA-512 checksums, then restores and builds the solution. It stores tools and caches in the checkout's parent directory. In later PowerShell sessions, run `. ../setup/activate.ps1` to activate those tools. Use `-WorkspaceRoot` to choose another installation directory.
+
 From the repository root:
 
 ```sh
 dotnet restore FakeAuth.sln
 dotnet build FakeAuth.sln --configuration Release --no-restore
 dotnet test FakeAuth.sln --configuration Release --no-build --no-restore
-python3 Samples/smoke-test.py
+pwsh -NoProfile -File Samples/smoke-test.ps1
 ```
 
-The existing test suites run 20 tests per framework, for 40 executions total. The smoke runner needs Python 3 and checks both samples in all three profile modes, including denied Manager access and rejection of unexpected hosts. It starts and stops its own sample processes. CI runs these same checks using VSTest.
+The existing test suites run 20 tests per framework, for 40 executions total. The smoke runner needs PowerShell 7.4 or later (`pwsh`) and checks both samples in all three profile modes, including denied Manager access and rejection of unexpected hosts. It starts and stops its own sample processes. CI runs these same checks using VSTest.
 
 ## Run the samples
 

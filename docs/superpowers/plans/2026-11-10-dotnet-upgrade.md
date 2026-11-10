@@ -40,13 +40,13 @@
 
 ### Task 2: Supported samples and solution membership
 
-**Files:** Samples/FakeAuth.SampleWeb10.0/{FakeAuth.SampleWeb10.0.csproj,Program.cs,ManagerProfile.cs}; matching files under Samples/FakeAuth.SampleWeb11.0; Samples/smoke-test.py; FakeAuth.sln; remove all four old Samples project directories.
+**Files:** Samples/FakeAuth.SampleWeb10.0/{FakeAuth.SampleWeb10.0.csproj,Program.cs,ManagerProfile.cs}; matching files under Samples/FakeAuth.SampleWeb11.0; Samples/smoke-test.ps1; FakeAuth.sln; remove all four old Samples project directories.
 
 **Interfaces:** Each sample accepts --profile default|manager|inline (default default); GET /api/claims returns claim type/value pairs, GET /api/manager requires Manager. Ports are provided by --urls; profile mode uses IFakeAuthProfile, inline mode uses AddFakeAuth options.
 
 - [x] Write a standard-library HTTP smoke runner that starts both samples in each mode and asserts default name/email, custom profile name, inline name, Manager success, default Manager denial and unexpected-host rejection. Run before sample implementation: expect failure because sample projects do not exist.
 - [x] Add the minimal sample projects and implementations, replacing legacy solution membership.
-- [x] Build the complete solution and run python3 Samples/smoke-test.py: expect all six sample configurations pass and child processes stop.
+- [x] Build the complete solution and run pwsh -NoProfile -File Samples/smoke-test.ps1: expect all six sample configurations pass and child processes stop.
 - [x] Commit the samples and smoke check.
 
 ### Task 3: CI, documentation and reusable environment
@@ -64,3 +64,7 @@
 ## Completion evidence
 
 SDK 11.0.100 and ASP.NET Core runtime 10.0.15 were verified against official release metadata checksums. Full Release build and all 40 existing test executions pass; all six sample profile modes pass functional HTTP checks. The 3.0.0 package contains only net10.0/net11.0 library assemblies and matching ASP.NET Core framework references; a separate NuGet consumer builds both targets. Both workflows pass actionlint. The saved cloud installer passes warm and empty-SDK-root replays. Independent review found a Windows smoke cleanup issue, fixed and verified with the POSIX API absent; native Windows was not run. The full test suite passes after this fix. Existing nullable test-host warnings and a VSTest artifact-directory fallback notice remain.
+
+## PowerShell follow-up
+
+At the user's request, replaced the Python smoke runner with Samples/smoke-test.ps1 and moved installation logic into scripts/install.ps1, both requiring PowerShell 7.4+. Updated CI to use the pwsh shell and refreshed documentation and saved environment instructions. The installer also generates activate.ps1 and a private XDG_RUNTIME_DIR for .NET 11's first-run state. Verified cold and repeat installation on Linux, checksum verification, all six smoke configurations, assertion-failure cleanup, all 40 .NET test executions, PowerShell syntax, and actionlint. Focused independent review found no important issues; native Windows/macOS execution was not tested.
