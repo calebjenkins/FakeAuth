@@ -59,4 +59,8 @@
 - [x] Rewrite stale sample and framework documentation, explain the breaking 3.0.0 change and local run/test commands.
 - [x] Run restore, Release build, both runtime test suites, sample smoke checks and pack. Inspect nupkg lib/net10.0 and lib/net11.0 plus framework references; expect no old targets or sample links outside history/design documentation.
 - [x] Exercise the saved installation commands and persist complete install_script/start_skill updates.
-- [ ] Commit the remaining changes and request one independent whole-branch review. Resolve important findings and run affected checks before reporting completion.
+- [x] Commit the remaining changes and request one independent whole-branch review. Resolve important findings and run affected checks before reporting completion.
+
+## Completion evidence
+
+SDK 11.0.100 and ASP.NET Core runtime 10.0.15 were verified against official release metadata checksums. Full Release build and all 40 existing test executions pass; all six sample profile modes pass functional HTTP checks. The 3.0.0 package contains only net10.0/net11.0 library assemblies and matching ASP.NET Core framework references; a separate NuGet consumer builds both targets. Both workflows pass actionlint. The saved cloud installer passes warm and empty-SDK-root replays. Independent review found a Windows smoke cleanup issue, fixed and verified with the POSIX API absent; native Windows was not run. The full test suite passes after this fix. Existing nullable test-host warnings and a VSTest artifact-directory fallback notice remain.

@@ -4,7 +4,6 @@
 import json
 import os
 from pathlib import Path
-import signal
 import socket
 import subprocess
 import tempfile
@@ -32,18 +31,19 @@ def request(url, host=None):
 def check_sample(version, profile, expected_name, expected_email, manager):
     project = ROOT / "Samples" / f"FakeAuth.SampleWeb{version}.0" / f"FakeAuth.SampleWeb{version}.0.csproj"
     assert project.is_file(), f"Missing sample project: {project}"
+    assembly = project.parent / "bin" / "Release" / f"net{version}.0" / f"{project.stem}.dll"
+    assert assembly.is_file(), f"Build the Release solution first: missing {assembly}"
     with socket.socket() as listener:
         listener.bind(("127.0.0.1", 0))
         port = listener.getsockname()[1]
     url = f"http://localhost:{port}"
     with tempfile.TemporaryFile(mode="w+") as log:
         process = subprocess.Popen(
-            ["dotnet", "run", "--project", str(project), "--configuration", "Release",
-             "--no-build", "--no-restore", "--no-launch-profile", "--",
-             "--urls", url, "--profile", profile],
-            cwd=ROOT,
+            # Launch the app itself so cleanup owns one process on every OS.
+            ["dotnet", str(assembly), "--urls", url, "--profile", profile],
+            cwd=project.parent,
             env={**os.environ, "ASPNETCORE_ENVIRONMENT": "Development"},
-            stdout=log, stderr=subprocess.STDOUT, start_new_session=True,
+            stdout=log, stderr=subprocess.STDOUT,
         )
         try:
             deadline = time.monotonic() + 30
@@ -74,11 +74,11 @@ def check_sample(version, profile, expected_name, expected_email, manager):
             raise
         finally:
             if process.poll() is None:
-                os.killpg(process.pid, signal.SIGTERM)
+                process.terminate()
                 try:
                     process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    os.killpg(process.pid, signal.SIGKILL)
+                    process.kill()
                     process.wait()
 
 
