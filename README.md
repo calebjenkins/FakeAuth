@@ -56,6 +56,16 @@ For reusable profiles, implement [IFakeAuthProfile](src/FakeAuth/Profiles/IFakeA
 
 ## Build and test
 
+### VS Code Dev Container
+
+Install Docker and the VS Code **Dev Containers** extension (`ms-vscode-remote.remote-containers`), open this repository in VS Code, and run **Dev Containers: Reopen in Container** from the Command Palette.
+
+The [Dev Container configuration](.devcontainer/devcontainer.json) installs SDK **11.0.100**, matching `global.json`, the **ASP.NET Core 10.0.15 runtime** for the .NET 10 tests and sample, and **PowerShell 7.7.0**. It restores solution dependencies automatically and includes the C# Dev Kit and PowerShell extensions. The default terminal is PowerShell; sample ports 5010 and 5011 are forwarded.
+
+Once the container opens, use the build, test, and sample commands below. No separate host .NET installation or manual `install.ps1` run is needed. After changing the container's SDK or runtime versions, run **Dev Containers: Rebuild Container**; keep the SDK version aligned with `global.json`.
+
+### Local installation
+
 Install the **.NET 11 SDK** selected by [global.json](global.json), plus the **.NET 10 ASP.NET Core runtime**. Installing the .NET 10 SDK alongside SDK 11 also supplies that runtime. The solution's library, test suites, and integration-test host target both frameworks.
 
 Alternatively, with PowerShell 7.4 or later installed, run the user-local installer in a PowerShell terminal:
