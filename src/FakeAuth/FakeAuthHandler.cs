@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,10 +17,9 @@ namespace FakeAuth
 
 		public FakeAuthHandler(IOptionsMonitor<FakeAuthOptions> options,
 		ILoggerFactory logger,
-		UrlEncoder encoder,
-		ISystemClock clock
+		UrlEncoder encoder
 		)
-		: base(options, logger, encoder, clock)
+		: base(options, logger, encoder)
 		{
 			_logger = logger.CreateLogger<FakeAuthHandler>();
 			_logger.LogDebug("Created the FakeAuth authentication handler.");

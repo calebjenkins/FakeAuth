@@ -11,9 +11,9 @@ on:
       - '**.md'
   workflow_dispatch:
 
-    env:
-      Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
-      Nuget_URL: "https://api.nuget.org/v3/index.json"
+env:
+  Nuget_Key: secrets.FAKEAUTH_NUGET_KEY
+  Nuget_URL: "https://api.nuget.org/v3/index.json"
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -33,7 +33,7 @@ jobs:
     
     - name: Verify commit exists in origin/main
       run: git log origin/main..HEAD | grep $(git rev-parse --short HEAD)
-      if: ${{ steps.main_main.outcome == 'failure' }}
+      if: ${{ steps.detect_main.outcome == 'failure' }}
 
     - name: Get version
       id: get_version
@@ -57,25 +57,31 @@ jobs:
         token: ${{secrets.github_token}}        
     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 6.0.x
+        # SDK 10 supplies its ASP.NET runtime; global.json selects SDK 11.
+        dotnet-version: 10.0.x
+        global-json-file: global.json
 
     - name: Package Restore
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration Release --no-restore --maxcpucount:2
 
     - name: Test
-      run: dotnet test --configuration Release --no-build
+      run: dotnet test --configuration Release --no-build --no-restore
+
+    - name: Smoke test .NET 10 and 11 samples
+      shell: pwsh
+      run: ./Samples/smoke-test.ps1
 
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${{steps.get_version.outputs.RELEASE_VERSION}} --include-symbols  --output .
       if: ${{ github.ref == 'refs/heads/main' }}
-      #if: ${{ steps.main_main.outcome == 'success' }}
+      #if: ${{ steps.detect_main.outcome == 'success' }}
 
     - name: Push to Nuget
       run: dotnet nuget push FakeAuth.${{steps.get_version.outputs.RELEASE_VERSION}}.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{secrets.FAKEAUTH_NUGET_KEY}}
       if: ${{ github.ref == 'refs/heads/main' }}
-      #if: ${{ steps.main_main.outcome == 'success' }}
+      #if: ${{ steps.detect_main.outcome == 'success' }}

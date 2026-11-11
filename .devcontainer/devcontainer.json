@@ -1,0 +1,42 @@
+{
+  "name": "FakeAuth (.NET 11)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "11.0.100",
+      "aspNetCoreRuntimeVersions": "10.0.15"
+    },
+    "ghcr.io/devcontainers/features/powershell:2": {
+      "version": "7.7.0"
+    }
+  },
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "DOTNET_NOLOGO": "1",
+    "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-vscode.powershell"
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "FakeAuth.sln",
+        "terminal.integrated.defaultProfile.linux": "PowerShell",
+        "terminal.integrated.profiles.linux": {
+          "PowerShell": {
+            "path": "pwsh",
+            "args": ["-NoLogo"]
+          }
+        }
+      }
+    }
+  },
+  "postCreateCommand": ["dotnet", "restore", "FakeAuth.sln"],
+  "forwardPorts": [5010, 5011],
+  "portsAttributes": {
+    "5010": { "label": "FakeAuth .NET 10 sample" },
+    "5011": { "label": "FakeAuth .NET 11 sample" }
+  }
+}
